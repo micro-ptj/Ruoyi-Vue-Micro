@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.xpit.geth.mapper.MicroTransactionMapper">
+    
+    <resultMap type="MicroTransaction" id="MicroTransactionResult">
+        <result property="id"    column="id"    />
+        <result property="sourceType"    column="source_type"    />
+        <result property="sourceId"    column="source_id"    />
+        <result property="transactionHash"    column="transaction_hash"    />
+        <result property="transactionIndex"    column="transaction_index"    />
+        <result property="blockHash"    column="block_hash"    />
+        <result property="blockNumber"    column="block_number"    />
+        <result property="cumulativeGasUsed"    column="cumulative_gas_used"    />
+        <result property="gasUsed"    column="gas_used"    />
+        <result property="contractAddress"    column="contract_address"    />
+        <result property="root"    column="root"    />
+        <result property="status"    column="status"    />
+        <result property="from"    column="from"    />
+        <result property="to"    column="to"    />
+        <result property="logs"    column="logs"    />
+        <result property="logsBloom"    column="logs_bloom"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="delFlag"    column="del_flag"    />
+    </resultMap>
+
+    <sql id="selectMicroTransactionVo">
+        select id, source_type, source_id, transaction_hash, transaction_index, block_hash, block_number, cumulative_gas_used, gas_used, contract_address, root, status, `from`, `to`, logs, logs_bloom, create_time, create_by, update_time, update_by, del_flag from micro_transaction
+    </sql>
+
+    <select id="selectMicroTransactionList" parameterType="MicroTransaction" resultMap="MicroTransactionResult">
+        <include refid="selectMicroTransactionVo"/>
+        <where>  
+            <if test="sourceType != null  and sourceType != ''"> and source_type = #{sourceType}</if>
+            <if test="sourceId != null "> and source_id = #{sourceId}</if>
+            <if test="transactionHash != null  and transactionHash != ''"> and transaction_hash = #{transactionHash}</if>
+            <if test="transactionIndex != null  and transactionIndex != ''"> and transaction_index = #{transactionIndex}</if>
+            <if test="blockHash != null  and blockHash != ''"> and block_hash = #{blockHash}</if>
+            <if test="blockNumber != null  and blockNumber != ''"> and block_number = #{blockNumber}</if>
+            <if test="cumulativeGasUsed != null  and cumulativeGasUsed != ''"> and cumulative_gas_used = #{cumulativeGasUsed}</if>
+            <if test="gasUsed != null  and gasUsed != ''"> and gas_used = #{gasUsed}</if>
+            <if test="contractAddress != null  and contractAddress != ''"> and contract_address = #{contractAddress}</if>
+            <if test="root != null  and root != ''"> and root = #{root}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="from != null  and from != ''"> and from = #{from}</if>
+            <if test="to != null  and to != ''"> and to = #{to}</if>
+            <if test="logs != null  and logs != ''"> and logs = #{logs}</if>
+            <if test="logsBloom != null  and logsBloom != ''"> and logs_bloom = #{logsBloom}</if>
+        </where>
+    </select>
+    
+    <select id="selectMicroTransactionById" parameterType="Long" resultMap="MicroTransactionResult">
+        <include refid="selectMicroTransactionVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertMicroTransaction" parameterType="MicroTransaction" useGeneratedKeys="true" keyProperty="id">
+        insert into micro_transaction
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sourceType != null">source_type,</if>
+            <if test="sourceId != null">source_id,</if>
+            <if test="transactionHash != null">transaction_hash,</if>
+            <if test="transactionIndex != null">transaction_index,</if>
+            <if test="blockHash != null">block_hash,</if>
+            <if test="blockNumber != null">block_number,</if>
+            <if test="cumulativeGasUsed != null">cumulative_gas_used,</if>
+            <if test="gasUsed != null">gas_used,</if>
+            <if test="contractAddress != null">contract_address,</if>
+            <if test="root != null">root,</if>
+            <if test="status != null">status,</if>
+            <if test="from != null">from,</if>
+            <if test="to != null">to,</if>
+            <if test="logs != null">logs,</if>
+            <if test="logsBloom != null">logs_bloom,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="delFlag != null">del_flag,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sourceType != null">#{sourceType},</if>
+            <if test="sourceId != null">#{sourceId},</if>
+            <if test="transactionHash != null">#{transactionHash},</if>
+            <if test="transactionIndex != null">#{transactionIndex},</if>
+            <if test="blockHash != null">#{blockHash},</if>
+            <if test="blockNumber != null">#{blockNumber},</if>
+            <if test="cumulativeGasUsed != null">#{cumulativeGasUsed},</if>
+            <if test="gasUsed != null">#{gasUsed},</if>
+            <if test="contractAddress != null">#{contractAddress},</if>
+            <if test="root != null">#{root},</if>
+            <if test="status != null">#{status},</if>
+            <if test="from != null">#{from},</if>
+            <if test="to != null">#{to},</if>
+            <if test="logs != null">#{logs},</if>
+            <if test="logsBloom != null">#{logsBloom},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMicroTransaction" parameterType="MicroTransaction">
+        update micro_transaction
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sourceType != null">source_type = #{sourceType},</if>
+            <if test="sourceId != null">source_id = #{sourceId},</if>
+            <if test="transactionHash != null">transaction_hash = #{transactionHash},</if>
+            <if test="transactionIndex != null">transaction_index = #{transactionIndex},</if>
+            <if test="blockHash != null">block_hash = #{blockHash},</if>
+            <if test="blockNumber != null">block_number = #{blockNumber},</if>
+            <if test="cumulativeGasUsed != null">cumulative_gas_used = #{cumulativeGasUsed},</if>
+            <if test="gasUsed != null">gas_used = #{gasUsed},</if>
+            <if test="contractAddress != null">contract_address = #{contractAddress},</if>
+            <if test="root != null">root = #{root},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="from != null">from = #{from},</if>
+            <if test="to != null">to = #{to},</if>
+            <if test="logs != null">logs = #{logs},</if>
+            <if test="logsBloom != null">logs_bloom = #{logsBloom},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteMicroTransactionById" parameterType="Long">
+        delete from micro_transaction where id = #{id}
+    </delete>
+
+    <delete id="deleteMicroTransactionByIds" parameterType="String">
+        delete from micro_transaction where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

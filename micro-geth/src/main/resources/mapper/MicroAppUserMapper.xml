@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.xpit.geth.mapper.MicroAppUserMapper">
+    
+    <resultMap type="MicroAppUser" id="MicroAppUserResult">
+        <result property="id"    column="id"    />
+        <result property="username"    column="username"    />
+        <result property="nickname"    column="nickname"    />
+        <result property="avatar"    column="avatar"    />
+        <result property="phone"    column="phone"    />
+        <result property="password"    column="password"    />
+        <result property="activate"    column="activate"    />
+        <result property="name"    column="name"    />
+        <result property="sex"    column="sex"    />
+        <result property="idCardNo"    column="id_card_no"    />
+        <result property="address"    column="address"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="delFlag"    column="del_flag"    />
+    </resultMap>
+
+    <resultMap id="MicroAppUserMicroUserInfoResult" type="MicroAppUser" extends="MicroAppUserResult">
+        <collection property="microUserInfoList" notNullColumn="sub_id" javaType="java.util.List" resultMap="MicroUserInfoResult" />
+    </resultMap>
+
+    <resultMap type="MicroUserInfo" id="MicroUserInfoResult">
+        <result property="id"    column="sub_id"    />
+        <result property="userId"    column="sub_user_id"    />
+        <result property="address"    column="sub_address"    />
+        <result property="privateKey"    column="sub_private_key"    />
+        <result property="publicKey"    column="sub_public_key"    />
+        <result property="balance"    column="sub_balance"    />
+        <result property="createTime"    column="sub_create_time"    />
+        <result property="createBy"    column="sub_create_by"    />
+        <result property="updateTime"    column="sub_update_time"    />
+        <result property="updateBy"    column="sub_update_by"    />
+        <result property="delFlag"    column="sub_del_flag"    />
+    </resultMap>
+
+    <resultMap id="userInfo" type="top.xpit.geth.domain.vo.UserInfoVo">
+        <result property="userId"    column="id"    />
+        <result property="username"    column="username"    />
+        <result property="phone"    column="phone"    />
+        <result property="name"    column="name"    />
+        <result property="avatar"    column="avatar"    />
+        <result property="sex"    column="sex"    />
+        <result property="address"    column="address"    />
+        <result property="balance"    column="balance"    />
+    </resultMap>
+    <sql id="selectMicroAppUserVo">
+        select id, username, nickname, avatar, phone, password, activate, `name`, sex, id_card_no, address, create_time, create_by, update_time, update_by, del_flag from micro_app_user
+    </sql>
+
+    <select id="selectMicroAppUserList" parameterType="MicroAppUser" resultMap="MicroAppUserResult">
+        <include refid="selectMicroAppUserVo"/>
+        <where>  
+            <if test="username != null  and username != ''"> and username like concat('%', #{username}, '%')</if>
+            <if test="phone != null "> and phone = #{phone}</if>
+            <if test="activate != null "> and activate = #{activate}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="sex != null "> and sex = #{sex}</if>
+            <if test="address != null  and address != ''"> and address = #{address}</if>
+        </where>
+    </select>
+    
+    <select id="selectMicroAppUserById" parameterType="Long" resultMap="MicroAppUserMicroUserInfoResult">
+        select a.id, a.username, a.nickname, a.avatar, a.phone, a.password, a.activate, a.name, a.sex, a.id_card_no, a.address, a.create_time, a.create_by, a.update_time, a.update_by, a.del_flag,
+ b.id as sub_id, b.user_id as sub_user_id, b.address as sub_address, b.private_key as sub_private_key, b.public_key as sub_public_key, b.balance as sub_balance, b.create_time as sub_create_time, b.create_by as sub_create_by, b.update_time as sub_update_time, b.update_by as sub_update_by, b.del_flag as sub_del_flag
+        from micro_app_user a
+        left join micro_user_info b on b.user_id = a.id
+        where a.id = #{id}
+    </select>
+    <select id="selectByPhone" resultType="top.xpit.geth.domain.MicroAppUser">
+        <include refid="selectMicroAppUserVo"/>
+            where phone = #{phone} and del_flag = 0
+    </select>
+    <select id="selectUserInfo" resultMap="userInfo">
+        SELECT
+            au.id,
+            au.username,
+            au.phone,
+            au.`name`,
+            au.sex,
+            au.avatar,
+            ui.address,
+            ui.balance
+        FROM
+            micro_app_user au
+                LEFT JOIN micro_user_info ui ON au.id = ui.user_id
+        WHERE
+            au.id = #{appUserId}
+    </select>
+
+    <insert id="insertMicroAppUser" parameterType="MicroAppUser" useGeneratedKeys="true" keyProperty="id">
+        insert into micro_app_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null">username,</if>
+            <if test="nickname != null">nickname,</if>
+            <if test="avatar != null">avatar,</if>
+            <if test="phone != null">phone,</if>
+            <if test="password != null">password,</if>
+            <if test="activate != null">activate,</if>
+            <if test="name != null">name,</if>
+            <if test="sex != null">sex,</if>
+            <if test="idCardNo != null">id_card_no,</if>
+            <if test="address != null">address,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="delFlag != null">del_flag,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="username != null">#{username},</if>
+            <if test="nickname != null">#{nickname},</if>
+            <if test="avatar != null">#{avatar},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="password != null">#{password},</if>
+            <if test="activate != null">#{activate},</if>
+            <if test="name != null">#{name},</if>
+            <if test="sex != null">#{sex},</if>
+            <if test="idCardNo != null">#{idCardNo},</if>
+            <if test="address != null">#{address},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMicroAppUser" parameterType="MicroAppUser">
+        update micro_app_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="username != null">username = #{username},</if>
+            <if test="nickname != null">nickname = #{nickname},</if>
+            <if test="avatar != null">avatar = #{avatar},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="activate != null">activate = #{activate},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="idCardNo != null">id_card_no = #{idCardNo},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteMicroAppUserById" parameterType="Long">
+        delete from micro_app_user where id = #{id}
+    </delete>
+
+    <delete id="deleteMicroAppUserByIds" parameterType="String">
+        delete from micro_app_user where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+    <delete id="deleteMicroUserInfoByUserIds" parameterType="String">
+        delete from micro_user_info where user_id in 
+        <foreach item="userId" collection="array" open="(" separator="," close=")">
+            #{userId}
+        </foreach>
+    </delete>
+
+    <delete id="deleteMicroUserInfoByUserId" parameterType="Long">
+        delete from micro_user_info where user_id = #{userId}
+    </delete>
+
+    <insert id="batchMicroUserInfo">
+        insert into micro_user_info( id, user_id, address, private_key, public_key, balance, create_time, create_by, update_time, update_by, del_flag) values
+		<foreach item="item" index="index" collection="list" separator=",">
+            ( #{item.id}, #{item.userId}, #{item.address}, #{item.privateKey}, #{item.publicKey}, #{item.balance}, #{item.createTime}, #{item.createBy}, #{item.updateTime}, #{item.updateBy}, #{item.delFlag})
+        </foreach>
+    </insert>
+</mapper>

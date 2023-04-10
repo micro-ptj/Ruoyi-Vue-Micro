@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.xpit.geth.mapper.MicroGoodsMapper">
+    
+    <resultMap type="MicroGoods" id="MicroGoodsResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="category"    column="category"    />
+        <result property="imageLink"    column="image_link"    />
+        <result property="description"    column="description"    />
+        <result property="auctionStartTime"    column="auction_start_time"    />
+        <result property="intervalTime"    column="interval_time"    />
+        <result property="auctionEndTime"    column="auction_end_time"    />
+        <result property="startPrice"    column="start_price"    />
+        <result property="status"    column="status"    />
+        <result property="conditions"    column="conditions"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="delFlag"    column="del_flag"    />
+    </resultMap>
+
+    <sql id="selectMicroGoodsVo">
+        select id, name, category, image_link, description, auction_start_time, interval_time, auction_end_time, start_price, status, conditions, create_time, create_by, update_time, update_by, del_flag from micro_goods
+    </sql>
+
+    <select id="selectMicroGoodsList" parameterType="MicroGoods" resultMap="MicroGoodsResult">
+        <include refid="selectMicroGoodsVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="category != null "> and category = #{category}</if>
+            <if test="imageLink != null  and imageLink != ''"> and image_link = #{imageLink}</if>
+            <if test="description != null  and description != ''"> and description = #{description}</if>
+            <if test="auctionStartTime != null "> and auction_start_time = #{auctionStartTime}</if>
+            <if test="intervalTime != null "> and interval_time = #{intervalTime}</if>
+            <if test="startPrice != null "> and start_price = #{startPrice}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="conditions != null "> and conditions = #{conditions}</if>
+        </where>
+    </select>
+    
+    <select id="selectMicroGoodsById" parameterType="Long" resultMap="MicroGoodsResult">
+        <include refid="selectMicroGoodsVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertMicroGoods" parameterType="MicroGoods" useGeneratedKeys="true" keyProperty="id">
+        insert into micro_goods
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+            <if test="category != null">category,</if>
+            <if test="imageLink != null">image_link,</if>
+            <if test="description != null">description,</if>
+            <if test="auctionStartTime != null">auction_start_time,</if>
+            <if test="intervalTime != null">interval_time,</if>
+            <if test="auctionEndTime != null">auction_end_time,</if>
+            <if test="startPrice != null">start_price,</if>
+            <if test="status != null">status,</if>
+            <if test="conditions != null">conditions,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="delFlag != null">del_flag,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="category != null">#{category},</if>
+            <if test="imageLink != null">#{imageLink},</if>
+            <if test="description != null">#{description},</if>
+            <if test="auctionStartTime != null">#{auctionStartTime},</if>
+            <if test="intervalTime != null">#{intervalTime},</if>
+            <if test="auctionEndTime != null">#{auctionEndTime},</if>
+            <if test="startPrice != null">#{startPrice},</if>
+            <if test="status != null">#{status},</if>
+            <if test="conditions != null">#{conditions},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMicroGoods" parameterType="MicroGoods">
+        update micro_goods
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="category != null">category = #{category},</if>
+            <if test="imageLink != null">image_link = #{imageLink},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="auctionStartTime != null">auction_start_time = #{auctionStartTime},</if>
+            <if test="intervalTime != null">interval_time = #{intervalTime},</if>
+            <if test="auctionEndTime != null">auction_end_time = #{auctionEndTime},</if>
+            <if test="startPrice != null">start_price = #{startPrice},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="conditions != null">conditions = #{conditions},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteMicroGoodsById" parameterType="Long">
+        delete from micro_goods where id = #{id}
+    </delete>
+
+    <delete id="deleteMicroGoodsByIds" parameterType="String">
+        delete from micro_goods where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

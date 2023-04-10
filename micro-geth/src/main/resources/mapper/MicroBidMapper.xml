@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.xpit.geth.mapper.MicroBidMapper">
+
+    <resultMap type="MicroBid" id="MicroBidResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="goodsId"    column="goods_id"    />
+        <result property="weiValue"    column="wei_value"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="delFlag"    column="del_flag"    />
+    </resultMap>
+
+    <sql id="selectMicroBidVo">
+        select id, user_id, goods_id, wei_value, create_time, create_by, update_time, update_by, del_flag from micro_bid
+    </sql>
+
+    <select id="selectMicroBidList" parameterType="MicroBid" resultMap="MicroBidResult">
+        <include refid="selectMicroBidVo"/>
+        <where>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="goodsId != null "> and goods_id = #{goodsId}</if>
+            <if test="weiValue != null  and weiValue != ''"> and wei_value = #{weiValue}</if>
+        </where>
+    </select>
+
+    <select id="selectMicroBidById" parameterType="Long" resultMap="MicroBidResult">
+        <include refid="selectMicroBidVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertMicroBid" parameterType="MicroBid" useGeneratedKeys="true" keyProperty="id">
+        insert into micro_bid
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="goodsId != null">goods_id,</if>
+            <if test="weiValue != null">wei_value,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="delFlag != null">del_flag,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="goodsId != null">#{goodsId},</if>
+            <if test="weiValue != null">#{weiValue},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+        </trim>
+    </insert>
+
+    <update id="updateMicroBid" parameterType="MicroBid">
+        update micro_bid
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="goodsId != null">goods_id = #{goodsId},</if>
+            <if test="weiValue != null">wei_value = #{weiValue},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteMicroBidById" parameterType="Long">
+        delete from micro_bid where id = #{id}
+    </delete>
+
+    <delete id="deleteMicroBidByIds" parameterType="String">
+        delete from micro_bid where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
