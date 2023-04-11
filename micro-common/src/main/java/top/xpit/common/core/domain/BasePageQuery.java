@@ -12,5 +12,4 @@ public class BasePageQuery implements Serializable {
 
     private Integer pageSize = 10;
 
-
 }

@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.xpit.geth.mapper.MicroOrderMapper">
-    
+
     <resultMap type="MicroOrder" id="MicroOrderResult">
         <result property="id"    column="id"    />
         <result property="userId"    column="user_id"    />
         <result property="goodsId"    column="goods_id"    />
+        <result property="amount"    column="amount"    />
+        <result property="status"    column="status"    />
+        <result property="orderTime"    column="order_time"    />
+        <result property="trackingNum"    column="tracking_num"    />
         <result property="createTime"    column="create_time"    />
         <result property="createBy"    column="create_by"    />
         <result property="updateTime"    column="update_time"    />
@@ -16,42 +20,70 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectMicroOrderVo">
-        select id, user_id, goods_id, create_time, create_by, update_time, update_by, del_flag from micro_order
+        select id, user_id, goods_id, amount, status, order_time, tracking_num, create_time, create_by, update_time, update_by, del_flag from micro_order
     </sql>
 
     <select id="selectMicroOrderList" parameterType="MicroOrder" resultMap="MicroOrderResult">
         <include refid="selectMicroOrderVo"/>
-        <where>  
+        <where>
             <if test="userId != null "> and user_id = #{userId}</if>
             <if test="goodsId != null "> and goods_id = #{goodsId}</if>
+            <if test="amount != null "> and amount = #{amount}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="orderTime != null "> and order_time = #{orderTime}</if>
+            <if test="trackingNum != null  and trackingNum != ''"> and tracking_num = #{trackingNum}</if>
         </where>
     </select>
-    
+
     <select id="selectMicroOrderById" parameterType="Long" resultMap="MicroOrderResult">
         <include refid="selectMicroOrderVo"/>
         where id = #{id}
     </select>
-        
+    <select id="selectAppOrderList" resultType="top.xpit.geth.domain.vo.OrderVo">
+        SELECT
+            mo.id,
+            md.title,
+            md.categroy,
+            mo.`amount`,
+            mo.order_time,
+            mo.status,
+            mo.`tracking_num`
+        FROM
+            micro_order mo
+                LEFT JOIN micro_goods mg
+                          ON mg.id = mo.`goods_id`
+        WHERE mo.`del_flag` = 0
+          AND mo.`user_id` = #{userId}
+    </select>
+
     <insert id="insertMicroOrder" parameterType="MicroOrder" useGeneratedKeys="true" keyProperty="id">
         insert into micro_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="userId != null">user_id,</if>
             <if test="goodsId != null">goods_id,</if>
+            <if test="amount != null">amount,</if>
+            <if test="status != null">status,</if>
+            <if test="orderTime != null">order_time,</if>
+            <if test="trackingNum != null">tracking_num,</if>
             <if test="createTime != null">create_time,</if>
             <if test="createBy != null">create_by,</if>
             <if test="updateTime != null">update_time,</if>
             <if test="updateBy != null">update_by,</if>
             <if test="delFlag != null">del_flag,</if>
-         </trim>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="userId != null">#{userId},</if>
             <if test="goodsId != null">#{goodsId},</if>
+            <if test="amount != null">#{amount},</if>
+            <if test="status != null">#{status},</if>
+            <if test="orderTime != null">#{orderTime},</if>
+            <if test="trackingNum != null">#{trackingNum},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="updateTime != null">#{updateTime},</if>
             <if test="updateBy != null">#{updateBy},</if>
             <if test="delFlag != null">#{delFlag},</if>
-         </trim>
+        </trim>
     </insert>
 
     <update id="updateMicroOrder" parameterType="MicroOrder">
@@ -59,6 +91,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="SET" suffixOverrides=",">
             <if test="userId != null">user_id = #{userId},</if>
             <if test="goodsId != null">goods_id = #{goodsId},</if>
+            <if test="amount != null">amount = #{amount},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="orderTime != null">order_time = #{orderTime},</if>
+            <if test="trackingNum != null">tracking_num = #{trackingNum},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>
@@ -73,7 +109,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
 
     <delete id="deleteMicroOrderByIds" parameterType="String">
-        delete from micro_order where id in 
+        delete from micro_order where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

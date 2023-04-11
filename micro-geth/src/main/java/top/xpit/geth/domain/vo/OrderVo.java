@@ -26,7 +26,7 @@ public class OrderVo {
      */
     private String amount;
     /**
-     * 下单时间
+     * 订单生成时间
      */
     private Date orderTime;
     /**
@@ -37,5 +37,5 @@ public class OrderVo {
     /**
      * 快递单号
      */
-    private String express;
+    private String trackingNum;
 }

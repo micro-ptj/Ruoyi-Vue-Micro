@@ -17,6 +17,40 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
+      <el-form-item label="支付价格" prop="amount">
+        <el-input
+          v-model="queryParams.amount"
+          placeholder="请输入支付价格"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="订单状态" prop="status">
+        <el-select v-model="queryParams.status" placeholder="请选择订单状态" clearable>
+          <el-option
+            v-for="dict in dict.type.micro_order_status"
+            :key="dict.value"
+            :label="dict.label"
+            :value="dict.value"
+          />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="订单生成时间" prop="orderTime">
+        <el-date-picker clearable
+                        v-model="queryParams.orderTime"
+                        type="date"
+                        value-format="yyyy-MM-dd"
+                        placeholder="请选择订单生成时间">
+        </el-date-picker>
+      </el-form-item>
+      <el-form-item label="快递单号" prop="trackingNum">
+        <el-input
+          v-model="queryParams.trackingNum"
+          placeholder="请输入快递单号"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -71,9 +105,21 @@
 
     <el-table v-loading="loading" :data="orderList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="id" align="center" prop="id" />
+      <el-table-column label="唯一标识" align="center" prop="id" />
       <el-table-column label="用户id" align="center" prop="userId" />
       <el-table-column label="商品id" align="center" prop="goodsId" />
+      <el-table-column label="支付价格" align="center" prop="amount" />
+      <el-table-column label="订单状态" align="center" prop="status">
+        <template slot-scope="scope">
+          <dict-tag :options="dict.type.micro_order_status" :value="scope.row.status"/>
+        </template>
+      </el-table-column>
+      <el-table-column label="订单生成时间" align="center" prop="orderTime" width="180">
+        <template slot-scope="scope">
+          <span>{{ parseTime(scope.row.orderTime, '{y}-{m}-{d}') }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="快递单号" align="center" prop="trackingNum" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -111,6 +157,30 @@
         <el-form-item label="商品id" prop="goodsId">
           <el-input v-model="form.goodsId" placeholder="请输入商品id" />
         </el-form-item>
+        <el-form-item label="支付价格" prop="amount">
+          <el-input v-model="form.amount" placeholder="请输入支付价格" />
+        </el-form-item>
+        <el-form-item label="订单状态" prop="status">
+          <el-select v-model="form.status" placeholder="请选择订单状态">
+            <el-option
+              v-for="dict in dict.type.micro_order_status"
+              :key="dict.value"
+              :label="dict.label"
+              :value="parseInt(dict.value)"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="订单生成时间" prop="orderTime">
+          <el-date-picker clearable
+                          v-model="form.orderTime"
+                          type="date"
+                          value-format="yyyy-MM-dd"
+                          placeholder="请选择订单生成时间">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="快递单号" prop="trackingNum">
+          <el-input v-model="form.trackingNum" placeholder="请输入快递单号" />
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -125,6 +195,7 @@ import { listOrder, getOrder, delOrder, addOrder, updateOrder } from "@/api/geth
 
 export default {
   name: "Order",
+  dicts: ['micro_order_status'],
   data() {
     return {
       // 遮罩层
@@ -151,6 +222,10 @@ export default {
         pageSize: 10,
         userId: null,
         goodsId: null,
+        amount: null,
+        status: null,
+        orderTime: null,
+        trackingNum: null,
       },
       // 表单参数
       form: {},
@@ -183,6 +258,10 @@ export default {
         id: null,
         userId: null,
         goodsId: null,
+        amount: null,
+        status: null,
+        orderTime: null,
+        trackingNum: null,
         createTime: null,
         createBy: null,
         updateTime: null,

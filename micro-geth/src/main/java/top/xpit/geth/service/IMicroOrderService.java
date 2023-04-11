@@ -2,6 +2,8 @@ package top.xpit.geth.service;
 
 import java.util.List;
 import top.xpit.geth.domain.MicroOrder;
+import top.xpit.geth.domain.query.AppOrderParam;
+import top.xpit.geth.domain.vo.OrderVo;
 
 /**
  * 订单信息Service接口
@@ -58,4 +60,6 @@ public interface IMicroOrderService
      * @return 结果
      */
     public int deleteMicroOrderById(Long id);
+
+    List<OrderVo> selectAppOrderList(AppOrderParam param);
 }

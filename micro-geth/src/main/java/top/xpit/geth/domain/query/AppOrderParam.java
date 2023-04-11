@@ -5,4 +5,6 @@ import top.xpit.common.core.domain.BasePageQuery;
 
 @Data
 public class AppOrderParam extends BasePageQuery {
+
+    private Long userId;
 }

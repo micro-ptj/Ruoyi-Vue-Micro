@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import top.xpit.geth.domain.MicroOrder;
+import top.xpit.geth.domain.query.AppOrderParam;
+import top.xpit.geth.domain.vo.OrderVo;
 
 /**
  * 订单信息Mapper接口
@@ -61,4 +63,6 @@ public interface MicroOrderMapper
      * @return 结果
      */
     public int deleteMicroOrderByIds(Long[] ids);
+
+    List<OrderVo> selectAppOrderList(AppOrderParam param);
 }

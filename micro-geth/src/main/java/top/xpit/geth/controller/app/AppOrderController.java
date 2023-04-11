@@ -9,6 +9,7 @@ import top.xpit.common.core.page.TableDataInfo;
 import top.xpit.geth.domain.MicroBid;
 import top.xpit.geth.domain.MicroOrder;
 import top.xpit.geth.domain.query.AppOrderParam;
+import top.xpit.geth.domain.vo.OrderVo;
 import top.xpit.geth.service.IMicroBidService;
 import top.xpit.geth.service.IMicroOrderService;
 
@@ -24,8 +25,7 @@ public class AppOrderController extends BaseController {
     @GetMapping("list")
     public TableDataInfo list(AppOrderParam param){
         startPage();
-//        List<MicroOrder> list = microOrderService.selectAppOrderList();
-//        return getDataTable(list);
-        return null;
+        List<OrderVo> list = microOrderService.selectAppOrderList(param);
+        return getDataTable(list);
     }
 }
