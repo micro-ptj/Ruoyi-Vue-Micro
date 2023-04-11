@@ -3,7 +3,6 @@ package top.xpit.geth.domain.vo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.ToString;
-import top.xpit.common.core.domain.BaseEntity;
 
 import java.util.Date;
 
