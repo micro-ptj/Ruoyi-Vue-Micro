@@ -19,6 +19,17 @@
         <result property="delFlag"    column="del_flag"    />
     </resultMap>
 
+    <resultMap type="OrderVo" id="OrderVoResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="category"    column="category"    />
+        <result property="orderTime"    column="order_time"    />
+        <result property="amount"    column="amount"    />
+        <result property="status"    column="status"    />
+        <result property="orderTime"    column="order_time"    />
+        <result property="trackingNum"    column="tracking_num"    />
+    </resultMap>
+
     <sql id="selectMicroOrderVo">
         select id, user_id, goods_id, amount, status, order_time, tracking_num, create_time, create_by, update_time, update_by, del_flag from micro_order
     </sql>
@@ -39,11 +50,11 @@
         <include refid="selectMicroOrderVo"/>
         where id = #{id}
     </select>
-    <select id="selectAppOrderList" resultType="top.xpit.geth.domain.vo.OrderVo">
+    <select id="selectAppOrderList" resultMap="OrderVoResult">
         SELECT
             mo.id,
-            md.title,
-            md.categroy,
+            mg.name,
+            mg.category,
             mo.`amount`,
             mo.order_time,
             mo.status,
