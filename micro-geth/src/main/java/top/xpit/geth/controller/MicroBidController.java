@@ -23,9 +23,9 @@ import top.xpit.common.core.page.TableDataInfo;
 
 /**
  * 交易信息Controller
- * 
+ *
  * @author PTJ
- * @date 2023-03-19
+ * @date 2023-04-12
  */
 @RestController
 @RequestMapping("/geth/bid")
@@ -63,10 +63,10 @@ public class MicroBidController extends BaseController
      * 获取交易信息详细信息
      */
     @PreAuthorize("@ss.hasPermi('geth:bid:query')")
-    @GetMapping(value = "/{userId}")
-    public AjaxResult getInfo(@PathVariable("userId") Long userId)
+    @GetMapping(value = "/{id}")
+    public AjaxResult getInfo(@PathVariable("id") Long id)
     {
-        return success(microBidService.selectMicroBidByUserId(userId));
+        return success(microBidService.selectMicroBidById(id));
     }
 
     /**
@@ -96,9 +96,9 @@ public class MicroBidController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('geth:bid:remove')")
     @Log(title = "交易信息", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{userIds}")
-    public AjaxResult remove(@PathVariable Long[] userIds)
+    @DeleteMapping("/{ids}")
+    public AjaxResult remove(@PathVariable Long[] ids)
     {
-        return toAjax(microBidService.deleteMicroBidByUserIds(userIds));
+        return toAjax(microBidService.deleteMicroBidByIds(ids));
     }
 }

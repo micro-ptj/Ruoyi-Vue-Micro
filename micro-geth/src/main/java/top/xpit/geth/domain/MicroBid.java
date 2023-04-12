@@ -1,5 +1,7 @@
 package top.xpit.geth.domain;
 
+import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import top.xpit.common.annotation.Excel;
@@ -9,17 +11,17 @@ import top.xpit.common.core.domain.BaseEntity;
  * 交易信息对象 micro_bid
  *
  * @author PTJ
- * @date 2023-04-09
+ * @date 2023-04-12
  */
 public class MicroBid extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** $column.columnComment */
+    /** 唯一标识 */
     private Long id;
 
-    /**  */
-    @Excel(name = "")
+    /** 用户ID */
+    @Excel(name = "用户ID")
     private Long userId;
 
     /** 商品ID */
@@ -28,7 +30,16 @@ public class MicroBid extends BaseEntity
 
     /** 出价 */
     @Excel(name = "出价")
-    private String weiValue;
+    private String amount;
+
+    /** 竞拍状态 */
+    @Excel(name = "竞拍状态")
+    private Long status;
+
+    /** 竞拍时间 */
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Excel(name = "竞拍时间", width = 30, dateFormat = "yyyy-MM-dd")
+    private Date bidTime;
 
     /**  */
     private Long delFlag;
@@ -60,14 +71,32 @@ public class MicroBid extends BaseEntity
     {
         return goodsId;
     }
-    public void setWeiValue(String weiValue)
+    public void setAmount(String amount)
     {
-        this.weiValue = weiValue;
+        this.amount = amount;
     }
 
-    public String getWeiValue()
+    public String getAmount()
     {
-        return weiValue;
+        return amount;
+    }
+    public void setStatus(Long status)
+    {
+        this.status = status;
+    }
+
+    public Long getStatus()
+    {
+        return status;
+    }
+    public void setBidTime(Date bidTime)
+    {
+        this.bidTime = bidTime;
+    }
+
+    public Date getBidTime()
+    {
+        return bidTime;
     }
     public void setDelFlag(Long delFlag)
     {
@@ -85,7 +114,9 @@ public class MicroBid extends BaseEntity
                 .append("id", getId())
                 .append("userId", getUserId())
                 .append("goodsId", getGoodsId())
-                .append("weiValue", getWeiValue())
+                .append("amount", getAmount())
+                .append("status", getStatus())
+                .append("bidTime", getBidTime())
                 .append("createTime", getCreateTime())
                 .append("createBy", getCreateBy())
                 .append("updateTime", getUpdateTime())

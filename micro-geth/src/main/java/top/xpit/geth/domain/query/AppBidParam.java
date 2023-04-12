@@ -5,4 +5,5 @@ import top.xpit.common.core.domain.BasePageQuery;
 
 @Data
 public class AppBidParam extends BasePageQuery {
+    private Long userId;
 }

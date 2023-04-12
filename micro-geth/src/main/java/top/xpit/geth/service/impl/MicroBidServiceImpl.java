@@ -4,6 +4,8 @@ import java.util.List;
 import top.xpit.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.xpit.geth.domain.query.AppBidParam;
+import top.xpit.geth.domain.vo.BidVo;
 import top.xpit.geth.mapper.MicroBidMapper;
 import top.xpit.geth.domain.MicroBid;
 import top.xpit.geth.service.IMicroBidService;
@@ -22,19 +24,19 @@ public class MicroBidServiceImpl implements IMicroBidService
 
     /**
      * 查询交易信息
-     * 
-     * @param userId 交易信息主键
+     *
+     * @param id 交易信息主键
      * @return 交易信息
      */
     @Override
-    public MicroBid selectMicroBidByUserId(Long userId)
+    public MicroBid selectMicroBidById(Long id)
     {
-        return microBidMapper.selectMicroBidByUserId(userId);
+        return microBidMapper.selectMicroBidById(id);
     }
 
     /**
      * 查询交易信息列表
-     * 
+     *
      * @param microBid 交易信息
      * @return 交易信息
      */
@@ -46,7 +48,7 @@ public class MicroBidServiceImpl implements IMicroBidService
 
     /**
      * 新增交易信息
-     * 
+     *
      * @param microBid 交易信息
      * @return 结果
      */
@@ -59,7 +61,7 @@ public class MicroBidServiceImpl implements IMicroBidService
 
     /**
      * 修改交易信息
-     * 
+     *
      * @param microBid 交易信息
      * @return 结果
      */
@@ -72,25 +74,30 @@ public class MicroBidServiceImpl implements IMicroBidService
 
     /**
      * 批量删除交易信息
-     * 
-     * @param userIds 需要删除的交易信息主键
+     *
+     * @param ids 需要删除的交易信息主键
      * @return 结果
      */
     @Override
-    public int deleteMicroBidByUserIds(Long[] userIds)
+    public int deleteMicroBidByIds(Long[] ids)
     {
-        return microBidMapper.deleteMicroBidByUserIds(userIds);
+        return microBidMapper.deleteMicroBidByIds(ids);
     }
 
     /**
      * 删除交易信息信息
-     * 
-     * @param userId 交易信息主键
+     *
+     * @param id 交易信息主键
      * @return 结果
      */
     @Override
-    public int deleteMicroBidByUserId(Long userId)
+    public int deleteMicroBidById(Long id)
     {
-        return microBidMapper.deleteMicroBidByUserId(userId);
+        return microBidMapper.deleteMicroBidById(id);
+    }
+
+    @Override
+    public List<BidVo> selectAppBidList(AppBidParam param) {
+        return microBidMapper.selectAppBidList(param);
     }
 }

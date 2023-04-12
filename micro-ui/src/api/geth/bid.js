@@ -10,9 +10,9 @@ export function listBid(query) {
 }
 
 // 查询交易信息详细
-export function getBid(userId) {
+export function getBid(id) {
   return request({
-    url: '/geth/bid/' + userId,
+    url: '/geth/bid/' + id,
     method: 'get'
   })
 }
@@ -36,9 +36,9 @@ export function updateBid(data) {
 }
 
 // 删除交易信息
-export function delBid(userId) {
+export function delBid(id) {
   return request({
-    url: '/geth/bid/' + userId,
+    url: '/geth/bid/' + id,
     method: 'delete'
   })
 }

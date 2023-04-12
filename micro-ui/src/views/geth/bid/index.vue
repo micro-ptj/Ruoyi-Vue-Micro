@@ -4,7 +4,7 @@
       <el-form-item label="用户ID" prop="userId">
         <el-input
           v-model="queryParams.userId"
-          placeholder="请输入"
+          placeholder="请输入用户ID"
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -17,13 +17,23 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="出价" prop="weiValue">
+      <el-form-item label="出价" prop="amount">
         <el-input
-          v-model="queryParams.weiValue"
+          v-model="queryParams.amount"
           placeholder="请输入出价"
           clearable
           @keyup.enter.native="handleQuery"
         />
+      </el-form-item>
+      <el-form-item label="竞拍状态" prop="status">
+        <el-select v-model="queryParams.status" placeholder="请选择竞拍状态" clearable>
+          <el-option
+            v-for="dict in dict.type.micro_bid_status"
+            :key="dict.value"
+            :label="dict.label"
+            :value="dict.value"
+          />
+        </el-select>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -79,10 +89,20 @@
 
     <el-table v-loading="loading" :data="bidList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="ID" align="center" prop="id" />
+      <el-table-column label="唯一标识" align="center" prop="id" />
       <el-table-column label="用户ID" align="center" prop="userId" />
       <el-table-column label="商品ID" align="center" prop="goodsId" />
-      <el-table-column label="出价" align="center" prop="weiValue" />
+      <el-table-column label="出价" align="center" prop="amount" />
+      <el-table-column label="竞拍状态" align="center" prop="status">
+        <template slot-scope="scope">
+          <dict-tag :options="dict.type.micro_bid_status" :value="scope.row.status"/>
+        </template>
+      </el-table-column>
+      <el-table-column label="竞拍时间" align="center" prop="bidTime" width="180">
+        <template slot-scope="scope">
+          <span>{{ parseTime(scope.row.bidTime, '{y}-{m}-{d}') }}</span>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -117,8 +137,26 @@
         <el-form-item label="商品ID" prop="goodsId">
           <el-input v-model="form.goodsId" placeholder="请输入商品ID" />
         </el-form-item>
-        <el-form-item label="出价" prop="weiValue">
-          <el-input v-model="form.weiValue" placeholder="请输入出价" />
+        <el-form-item label="出价" prop="amount">
+          <el-input v-model="form.amount" placeholder="请输入出价" />
+        </el-form-item>
+        <el-form-item label="竞拍状态" prop="status">
+          <el-select v-model="form.status" placeholder="请选择竞拍状态">
+            <el-option
+              v-for="dict in dict.type.micro_bid_status"
+              :key="dict.value"
+              :label="dict.label"
+              :value="parseInt(dict.value)"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="竞拍时间" prop="bidTime">
+          <el-date-picker clearable
+                          v-model="form.bidTime"
+                          type="date"
+                          value-format="yyyy-MM-dd"
+                          placeholder="请选择竞拍时间">
+          </el-date-picker>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -134,6 +172,7 @@ import { listBid, getBid, delBid, addBid, updateBid } from "@/api/geth/bid";
 
 export default {
   name: "Bid",
+  dicts: ['micro_bid_status'],
   data() {
     return {
       // 遮罩层
@@ -160,7 +199,8 @@ export default {
         pageSize: 10,
         userId: null,
         goodsId: null,
-        weiValue: null,
+        amount: null,
+        status: null,
       },
       // 表单参数
       form: {},
@@ -193,7 +233,9 @@ export default {
         id: null,
         userId: null,
         goodsId: null,
-        weiValue: null,
+        amount: null,
+        status: null,
+        bidTime: null,
         createTime: null,
         createBy: null,
         updateTime: null,

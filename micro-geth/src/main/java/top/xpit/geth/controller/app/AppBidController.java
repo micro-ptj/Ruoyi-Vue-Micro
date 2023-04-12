@@ -10,6 +10,8 @@ import top.xpit.common.core.domain.AjaxResult;
 import top.xpit.common.core.page.TableDataInfo;
 import top.xpit.geth.domain.MicroBid;
 import top.xpit.geth.domain.MicroGoods;
+import top.xpit.geth.domain.query.AppBidParam;
+import top.xpit.geth.domain.vo.BidVo;
 import top.xpit.geth.service.IMicroBidService;
 
 import java.util.List;
@@ -22,9 +24,9 @@ public class AppBidController extends BaseController {
     private final IMicroBidService microBidService;
 
     @GetMapping("list")
-    public TableDataInfo list(MicroBid microBid){
+    public TableDataInfo list(AppBidParam param){
         startPage();
-        List<MicroBid> list = microBidService.selectMicroBidList(microBid);
+        List<BidVo> list = microBidService.selectAppBidList(param);
         return getDataTable(list);
     }
 }
