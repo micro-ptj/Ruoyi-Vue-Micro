@@ -1,19 +1,11 @@
 [
 	{
-		"inputs": [],
-		"name": "beneficiary",
-		"outputs": [
-			{
-				"internalType": "address payable",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_startTime",
+				"type": "uint256"
+			},
 			{
 				"internalType": "uint256",
 				"name": "_goodsId",
@@ -146,19 +138,6 @@
 			}
 		],
 		"name": "getContractBalance",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "goodsId",
 		"outputs": [
 			{
 				"internalType": "uint256",

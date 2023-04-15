@@ -15,9 +15,9 @@ contract Escrow {
     event HighestBidIncreased(address bidder, uint amount); // 最高出价增加事件
     event AuctionEnded(address winner, uint amount); // 拍卖结束事件
 
-    constructor(uint _biddingTime, address payable _beneficiary, uint _uniqueItemId) {
+    constructor(uint _startTime, uint _biddingTime, address payable _beneficiary, uint _uniqueItemId) {
         beneficiary = _beneficiary;
-        auctionEndTime = block.timestamp + _biddingTime;
+        auctionEndTime = _startTime + _biddingTime;
         uniqueItemId = _uniqueItemId;
     }
 

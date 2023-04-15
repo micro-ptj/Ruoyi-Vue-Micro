@@ -5,17 +5,19 @@ import "contracts/Escrow.sol";
 
 contract GoodsStore {
 
-    address payable public beneficiary; // 受益人地址
-    uint biddingTime; // 拍卖持续时间
+    address payable private beneficiary; // 受益人地址
+    uint private biddingTime; // 拍卖持续时间
+    uint private startTime;
     mapping (uint => address) goodsEscrow;
 
-    uint public goodsId; // 商品唯一标识
+    uint private goodsId; // 商品唯一标识
 
-    function createGoods(uint _goodsId, uint _biddingTime, address payable _beneficiary) public {
-        biddingTime = block.timestamp + _biddingTime;
+    function createGoods(uint _startTime, uint _goodsId, uint _biddingTime, address payable _beneficiary) public {
+        biddingTime = _biddingTime;
+        startTime = _startTime;
         goodsId = _goodsId;
         beneficiary = _beneficiary;
-        Escrow escrow = new Escrow(biddingTime, beneficiary, _goodsId);
+        Escrow escrow = new Escrow(startTime, biddingTime, beneficiary, _goodsId);
         goodsEscrow[goodsId] = address(escrow);
     }
 
