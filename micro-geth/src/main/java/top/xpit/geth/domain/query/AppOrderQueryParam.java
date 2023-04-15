@@ -4,7 +4,8 @@ import lombok.Data;
 import top.xpit.common.core.domain.BasePageQuery;
 
 @Data
-public class AppOrderParam extends BasePageQuery {
+public class AppOrderQueryParam extends BasePageQuery {
 
     private Long userId;
+
 }

@@ -49,6 +49,9 @@
         FROM
             micro_user_info WHERE user_id = #{appUserId}
     </select>
+    <select id="selectPrivateKeyByUserId" resultType="java.lang.String">
+        SELECT private_key FROM micro_user_info WHERE user_id = #{appUserId}
+    </select>
 
     <insert id="insertMicroUserInfo" parameterType="MicroUserInfo" useGeneratedKeys="true" keyProperty="id">
         insert into micro_user_info

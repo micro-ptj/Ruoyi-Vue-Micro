@@ -35,6 +35,15 @@ export function updateGoods(data) {
   })
 }
 
+//上架
+export function groundingGoods(data) {
+  return request({
+    url: '/geth/goods/grounding',
+    method: 'post',
+    data: data
+  })
+}
+
 // 删除商品信息
 export function delGoods(id) {
   return request({

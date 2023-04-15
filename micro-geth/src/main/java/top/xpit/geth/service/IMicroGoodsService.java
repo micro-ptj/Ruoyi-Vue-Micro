@@ -1,7 +1,9 @@
 package top.xpit.geth.service;
 
+import java.text.ParseException;
 import java.util.List;
 import top.xpit.geth.domain.MicroGoods;
+import top.xpit.geth.domain.query.CreateGoodsParam;
 
 /**
  * 商品信息Service接口
@@ -58,4 +60,6 @@ public interface IMicroGoodsService
      * @return 结果
      */
     public int deleteMicroGoodsById(Long id);
+
+    int grounding(CreateGoodsParam param);
 }

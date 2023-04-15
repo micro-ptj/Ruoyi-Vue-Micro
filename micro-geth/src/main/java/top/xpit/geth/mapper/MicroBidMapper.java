@@ -2,7 +2,7 @@ package top.xpit.geth.mapper;
 
 import java.util.List;
 import top.xpit.geth.domain.MicroBid;
-import top.xpit.geth.domain.query.AppBidParam;
+import top.xpit.geth.domain.query.AppBidQueryParam;
 import top.xpit.geth.domain.vo.BidVo;
 
 /**
@@ -61,5 +61,5 @@ public interface MicroBidMapper
      */
     public int deleteMicroBidByIds(Long[] ids);
 
-    List<BidVo> selectAppBidList(AppBidParam param);
+    List<BidVo> selectAppBidList(AppBidQueryParam param);
 }

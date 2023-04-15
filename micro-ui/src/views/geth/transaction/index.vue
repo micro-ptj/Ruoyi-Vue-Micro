@@ -162,19 +162,47 @@
       <el-table-column label="id" align="center" prop="id" />
       <el-table-column label="source_type" align="center" prop="sourceType" />
       <el-table-column label="source_id" align="center" prop="sourceId" />
-      <el-table-column label="transaction_hash" align="center" prop="transactionHash" />
+      <el-table-column label="transaction_hash" align="center" prop="transactionHash" >
+        <template slot-scope="scope">
+          <span class="row-box">{{scope.row.transactionHash}}</span>
+        </template>
+      </el-table-column>
       <el-table-column label="transaction_index" align="center" prop="transactionIndex" />
-      <el-table-column label="block_hash" align="center" prop="blockHash" />
+      <el-table-column label="block_hash" align="center" prop="blockHash" >
+        <template slot-scope="scope">
+          <span class="row-box">{{scope.row.blockHash}}</span>
+        </template>
+      </el-table-column>
       <el-table-column label="block_number" align="center" prop="blockNumber" />
       <el-table-column label="cumulative_gas_used" align="center" prop="cumulativeGasUsed" />
       <el-table-column label="gas_used" align="center" prop="gasUsed" />
-      <el-table-column label="contract_address" align="center" prop="contractAddress" />
+      <el-table-column label="contract_address" align="center" prop="contractAddress" >
+        <template slot-scope="scope">
+          <span class="row-box">{{scope.row.contractAddress}}</span>
+        </template>
+      </el-table-column>
       <el-table-column label="root" align="center" prop="root" />
       <el-table-column label="status" align="center" prop="status" />
-      <el-table-column label="from" align="center" prop="from" />
-      <el-table-column label="to" align="center" prop="to" />
-      <el-table-column label="logs" align="center" prop="logs" />
-      <el-table-column label="logs_bloom" align="center" prop="logsBloom" />
+      <el-table-column label="from" align="center" prop="from" >
+        <template slot-scope="scope">
+          <span class="row-box">{{scope.row.from}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="to" align="center" prop="to" >
+        <template slot-scope="scope">
+          <span class="row-box">{{scope.row.to}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="logs" align="center" prop="logs" >
+        <template slot-scope="scope">
+          <span class="row-box">{{scope.row.logs}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="logs_bloom" align="center" prop="logsBloom" >
+        <template slot-scope="scope">
+          <span class="row-box">{{scope.row.logsBloom}}</span>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -194,7 +222,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -425,3 +453,13 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.row-box{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+</style>

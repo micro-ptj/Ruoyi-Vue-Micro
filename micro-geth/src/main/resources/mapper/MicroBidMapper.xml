@@ -61,6 +61,7 @@
                           ON mg.id = mb.`goods_id`
         WHERE mb.`del_flag` = 0
           AND mb.`user_id` = #{userId}
+        order by mb.id desc
     </select>
 
     <insert id="insertMicroBid" parameterType="MicroBid" useGeneratedKeys="true" keyProperty="id">

@@ -2,6 +2,7 @@ package top.xpit.geth.mapper;
 
 import java.util.List;
 import top.xpit.geth.domain.MicroGoods;
+import top.xpit.geth.domain.query.CreateGoodsParam;
 
 /**
  * 商品信息Mapper接口
@@ -58,4 +59,6 @@ public interface MicroGoodsMapper
      * @return 结果
      */
     public int deleteMicroGoodsByIds(Long[] ids);
+
+    int grounding(CreateGoodsParam param);
 }

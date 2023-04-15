@@ -4,6 +4,6 @@ import lombok.Data;
 import top.xpit.common.core.domain.BasePageQuery;
 
 @Data
-public class AppBidParam extends BasePageQuery {
+public class AppBidQueryParam extends BasePageQuery {
     private Long userId;
 }

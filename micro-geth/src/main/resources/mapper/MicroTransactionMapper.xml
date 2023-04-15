@@ -72,8 +72,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="contractAddress != null">contract_address,</if>
             <if test="root != null">root,</if>
             <if test="status != null">status,</if>
-            <if test="from != null">from,</if>
-            <if test="to != null">to,</if>
+            <if test="from != null">`from`,</if>
+            <if test="to != null">`to`,</if>
             <if test="logs != null">logs,</if>
             <if test="logsBloom != null">logs_bloom,</if>
             <if test="createTime != null">create_time,</if>

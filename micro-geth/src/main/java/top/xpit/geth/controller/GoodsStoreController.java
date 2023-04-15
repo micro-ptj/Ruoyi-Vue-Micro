@@ -23,20 +23,11 @@ public class GoodsStoreController extends BaseController {
 
     private final GoodsStoreService goodsStoreService;
 
-    @GetMapping("bid")
-    public AjaxResult bid(BigInteger id, BigInteger weiValue){
-        return goodsStoreService.bid(id, weiValue);
-    }
+//    @GetMapping("bid")
+//    public AjaxResult bid(BigInteger id, BigInteger weiValue){
+//        return goodsStoreService.bid(id, weiValue);
+//    }
 
-    /**
-     * 商品上架使用
-     * @param param
-     * @return
-     */
-    @PostMapping("createGoods")
-    public AjaxResult createGoods(@RequestBody CreateGoodsParam param){
-        return goodsStoreService.createGoods(param);
-    }
 
     /**
      * 释放资金

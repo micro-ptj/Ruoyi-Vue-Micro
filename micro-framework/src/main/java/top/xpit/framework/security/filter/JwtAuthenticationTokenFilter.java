@@ -40,14 +40,14 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException
     {
-        log.info(String.valueOf(request));
+//        log.info(String.valueOf(request));
         //如果请求头中含有app
         String token = appLoginService.getToken(request);
         if (StringUtils.isNotNull(token)){
             //app
-            log.info("---------->App");
+//            log.info("---------->App");
             AppLoginUser appLoginUser = appLoginService.getAppLoginUser(request);
-            log.info(appLoginUser.toString());
+//            log.info(appLoginUser.toString());
             if (StringUtils.isNotNull(appLoginUser)){
                 appLoginService.verifyToken(appLoginUser);
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(appLoginUser, null, null);
@@ -56,7 +56,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter
             }
         }else {
             //管理后台
-            log.info("---------->Manager");
+//            log.info("---------->Manager");
             LoginUser loginUser = tokenService.getLoginUser(request);
             if (StringUtils.isNotNull(loginUser) && StringUtils.isNull(SecurityUtils.getAuthentication()))
             {

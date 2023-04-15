@@ -1,10 +1,12 @@
 package top.xpit.geth.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import top.xpit.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.xpit.geth.domain.query.AppBidParam;
+import top.xpit.geth.domain.query.AppBidQueryParam;
 import top.xpit.geth.domain.vo.BidVo;
 import top.xpit.geth.mapper.MicroBidMapper;
 import top.xpit.geth.domain.MicroBid;
@@ -56,6 +58,8 @@ public class MicroBidServiceImpl implements IMicroBidService
     public int insertMicroBid(MicroBid microBid)
     {
         microBid.setCreateTime(DateUtils.getNowDate());
+        microBid.setUpdateTime(DateUtils.getNowDate());
+        microBid.setCreateTime(DateUtils.getNowDate());
         return microBidMapper.insertMicroBid(microBid);
     }
 
@@ -97,7 +101,23 @@ public class MicroBidServiceImpl implements IMicroBidService
     }
 
     @Override
-    public List<BidVo> selectAppBidList(AppBidParam param) {
+    public List<BidVo> selectAppBidList(AppBidQueryParam param) {
         return microBidMapper.selectAppBidList(param);
+    }
+
+    @Override
+    public MicroBid bids(AppBidParam param) {
+        MicroBid microBid = new MicroBid();
+        microBid.setUserId(param.getUserId());
+        microBid.setAmount(param.getAmount());
+        microBid.setGoodsId(param.getGoodsId());
+        microBid.setStatus(0L);
+        microBid.setBidTime(DateUtils.getNowDate());
+        microBid.setCreateBy(param.getUserId().toString());
+        microBid.setUpdateBy(param.getUserId().toString());
+
+        this.insertMicroBid(microBid);
+        System.out.println(microBid);
+        return microBid;
     }
 }

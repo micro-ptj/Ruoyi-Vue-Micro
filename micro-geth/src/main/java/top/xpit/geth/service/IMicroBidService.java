@@ -3,6 +3,7 @@ package top.xpit.geth.service;
 import java.util.List;
 import top.xpit.geth.domain.MicroBid;
 import top.xpit.geth.domain.query.AppBidParam;
+import top.xpit.geth.domain.query.AppBidQueryParam;
 import top.xpit.geth.domain.vo.BidVo;
 
 /**
@@ -61,5 +62,7 @@ public interface IMicroBidService
      */
     public int deleteMicroBidById(Long id);
 
-    List<BidVo> selectAppBidList(AppBidParam param);
+    List<BidVo> selectAppBidList(AppBidQueryParam param);
+
+    MicroBid bids(AppBidParam param);
 }

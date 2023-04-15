@@ -129,7 +129,11 @@
           <image-preview :src="scope.row.imageLink" :width="50" :height="50"/>
         </template>
       </el-table-column>
-      <el-table-column label="描述" align="center" prop="description" />
+      <el-table-column label="描述" align="center" prop="description" >
+        <template slot-scope="scope">
+          <span class="row-box" v-html="scope.row.description"/>
+        </template>
+      </el-table-column>
       <el-table-column label="开始时间" align="center" prop="auctionStartTime" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.auctionStartTime, '{y}-{m}-{d}') }}</span>
@@ -161,6 +165,12 @@
             @click="handleUpdate(scope.row)"
             v-hasPermi="['geth:goods:edit']"
           >修改</el-button>
+          <el-button
+            size="mini"
+            type="text"
+            icon="el-icon-edit"
+            @click="handleGrounding(scope.row)"
+          >上架</el-button>
           <el-button
             size="mini"
             type="text"
@@ -205,8 +215,7 @@
         <el-form-item label="开始时间" prop="auctionStartTime">
           <el-date-picker clearable
                           v-model="form.auctionStartTime"
-                          type="date"
-                          value-format="yyyy-MM-dd"
+                          type="datetime"
                           placeholder="请选择开始时间">
           </el-date-picker>
         </el-form-item>
@@ -216,15 +225,15 @@
         <el-form-item label="起拍价" prop="startPrice">
           <el-input v-model="form.startPrice" placeholder="请输入起拍价" />
         </el-form-item>
-        <el-form-item label="是否上架" prop="status">
-          <el-radio-group v-model="form.status">
-            <el-radio
-              v-for="dict in dict.type.micro_goods_status"
-              :key="dict.value"
-              :label="parseInt(dict.value)"
-            >{{dict.label}}</el-radio>
-          </el-radio-group>
-        </el-form-item>
+<!--        <el-form-item label="是否上架" prop="status">-->
+<!--          <el-radio-group v-model="form.status">-->
+<!--            <el-radio-->
+<!--              v-for="dict in dict.type.micro_goods_status"-->
+<!--              :key="dict.value"-->
+<!--              :label="parseInt(dict.value)"-->
+<!--            >{{dict.label}}</el-radio>-->
+<!--          </el-radio-group>-->
+<!--        </el-form-item>-->
         <el-form-item label="商品的状态" prop="conditions">
           <el-select v-model="form.conditions" placeholder="请选择商品的状态">
             <el-option
@@ -245,7 +254,7 @@
 </template>
 
 <script>
-import { listGoods, getGoods, delGoods, addGoods, updateGoods } from "@/api/geth/goods";
+import {listGoods, getGoods, delGoods, addGoods, updateGoods, groundingGoods} from "@/api/geth/goods";
 
 export default {
   name: "Goods",
@@ -284,6 +293,7 @@ export default {
         status: null,
         conditions: null,
       },
+      groundingParam: {},
       // 表单参数
       form: {},
       // 表单校验
@@ -363,6 +373,14 @@ export default {
         this.title = "修改商品信息";
       });
     },
+    /** 上架按钮 */
+    handleGrounding(row){
+      this.groundingParam.goodsId = row.id;
+      groundingGoods(this.groundingParam).then(res => {
+        this.$modal.msgSuccess("上架成功");
+        this.getList();
+      })
+    },
     /** 提交按钮 */
     submitForm() {
       this.$refs["form"].validate(valid => {
@@ -402,3 +420,13 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.row-box{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+</style>

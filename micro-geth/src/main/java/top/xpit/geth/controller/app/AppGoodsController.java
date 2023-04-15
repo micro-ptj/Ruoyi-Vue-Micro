@@ -28,6 +28,8 @@ public class AppGoodsController extends BaseController {
     @GetMapping("/list")
     public TableDataInfo list(MicroGoods microGoods)
     {
+        microGoods.setStatus(1L);
+        microGoods.setDelFlag(0L);
         startPage();
         List<MicroGoods> list = microGoodsService.selectMicroGoodsList(microGoods);
         return getDataTable(list);

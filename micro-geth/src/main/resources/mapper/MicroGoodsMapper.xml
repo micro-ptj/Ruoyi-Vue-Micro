@@ -107,6 +107,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </update>
 
+    <update id="grounding">
+        update micro_goods set status = 1, auction_end_time = #{endTime}, update_time = NOW(), update_by = #{userId}  where id = #{goodsId}
+    </update>
+
     <delete id="deleteMicroGoodsById" parameterType="Long">
         delete from micro_goods where id = #{id}
     </delete>

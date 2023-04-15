@@ -48,7 +48,7 @@ geth --datadir ./devdata/ --dev --http --http.addr 0.0.0.0 --http.api web3,eth,d
   ```
 
   ```bash
-  web3j generate solidity --abiFile EcommerceStore.abi --binFile EcommerceStore.bin -o .\src\main\java -p xpit.top.action.contract
+  web3j generate solidity --abiFile GoodsStore.abi --binFile GoodsStore.bin -o .\src\main\java -p top.xpit.action.contract
   ```
   
 ```text

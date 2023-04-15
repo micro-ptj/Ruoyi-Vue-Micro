@@ -1,8 +1,10 @@
 package top.xpit.geth.service;
 
 import top.xpit.common.core.domain.AjaxResult;
+import top.xpit.geth.domain.MicroBid;
 import top.xpit.geth.domain.query.CreateGoodsParam;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
@@ -11,9 +13,9 @@ import java.math.BigInteger;
  * @Description:
  */
 public interface GoodsStoreService {
-    AjaxResult bid(BigInteger id, BigInteger weiValue);
+    boolean bid(BigInteger id, BigDecimal amount, MicroBid microBid);
 
-    AjaxResult createGoods(CreateGoodsParam param);
+    boolean createGoods(CreateGoodsParam param);
 
     AjaxResult withdraw(BigInteger id);
 

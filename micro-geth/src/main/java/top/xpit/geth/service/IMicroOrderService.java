@@ -2,7 +2,7 @@ package top.xpit.geth.service;
 
 import java.util.List;
 import top.xpit.geth.domain.MicroOrder;
-import top.xpit.geth.domain.query.AppOrderParam;
+import top.xpit.geth.domain.query.AppOrderQueryParam;
 import top.xpit.geth.domain.vo.OrderVo;
 
 /**
@@ -61,5 +61,5 @@ public interface IMicroOrderService
      */
     public int deleteMicroOrderById(Long id);
 
-    List<OrderVo> selectAppOrderList(AppOrderParam param);
+    List<OrderVo> selectAppOrderList(AppOrderQueryParam param);
 }

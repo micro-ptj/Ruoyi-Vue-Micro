@@ -1,12 +1,26 @@
 package top.xpit.geth.service.impl;
 
+import java.math.BigInteger;
+import java.text.ParseException;
 import java.util.List;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
+import top.xpit.common.constant.CacheConstants;
+import top.xpit.common.constant.GethConstants;
+import top.xpit.common.core.domain.AjaxResult;
+import top.xpit.common.core.redis.RedisCache;
 import top.xpit.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.xpit.common.utils.SecurityUtils;
+import top.xpit.geth.domain.query.CreateGoodsParam;
 import top.xpit.geth.mapper.MicroGoodsMapper;
 import top.xpit.geth.domain.MicroGoods;
+import top.xpit.geth.service.GoodsStoreService;
 import top.xpit.geth.service.IMicroGoodsService;
+import top.xpit.system.service.ISysConfigService;
 
 /**
  * 商品信息Service业务层处理
@@ -14,12 +28,15 @@ import top.xpit.geth.service.IMicroGoodsService;
  * @author PTJ
  * @date 2023-04-02
  */
-@Service
+@Service("microGoodsService")
+@Slf4j
+@RequiredArgsConstructor
 public class MicroGoodsServiceImpl implements IMicroGoodsService 
 {
-    @Autowired
-    private MicroGoodsMapper microGoodsMapper;
+    private final MicroGoodsMapper microGoodsMapper;
 
+    private final RedisCache redisCache;
+    private final GoodsStoreService goodsStoreService;
     /**
      * 查询商品信息
      * 
@@ -92,5 +109,27 @@ public class MicroGoodsServiceImpl implements IMicroGoodsService
     public int deleteMicroGoodsById(Long id)
     {
         return microGoodsMapper.deleteMicroGoodsById(id);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int grounding(CreateGoodsParam param){
+        //根据id进行查询商品
+        MicroGoods goods = microGoodsMapper.selectMicroGoodsById(param.getGoodsId().longValue());
+        param.setAddress((String) redisCache.getCacheObject(CacheConstants.SYS_CONFIG_KEY + "micro.geth.goods.address"));
+        param.setStartTime(goods.getAuctionStartTime());
+        param.setUserId(SecurityUtils.getUserId());
+        param.setInterval(BigInteger.valueOf(goods.getIntervalTime()));
+        try {
+            param.setStartTimeStamp(goods.getAuctionStartTime());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        int rows = microGoodsMapper.grounding(param);
+
+        boolean b = goodsStoreService.createGoods(param);
+        log.debug("------------------------->" + b);
+
+        return rows;
     }
 }

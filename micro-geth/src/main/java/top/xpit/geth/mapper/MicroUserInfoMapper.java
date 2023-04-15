@@ -66,4 +66,6 @@ public interface MicroUserInfoMapper
     MicroUserInfo selectByUserId(@Param("userId") Long userId);
 
     String selectUserInfoByUserIdToPrivateKey(Long appUserId);
+
+    String selectPrivateKeyByUserId(Long appUserId);
 }

@@ -17,6 +17,8 @@ import top.xpit.common.core.controller.BaseController;
 import top.xpit.common.core.domain.AjaxResult;
 import top.xpit.common.enums.BusinessType;
 import top.xpit.geth.domain.MicroGoods;
+import top.xpit.geth.domain.query.CreateGoodsParam;
+import top.xpit.geth.service.GoodsStoreService;
 import top.xpit.geth.service.IMicroGoodsService;
 import top.xpit.common.utils.poi.ExcelUtil;
 import top.xpit.common.core.page.TableDataInfo;
@@ -100,5 +102,11 @@ public class MicroGoodsController extends BaseController
     public AjaxResult remove(@PathVariable Long[] ids)
     {
         return toAjax(microGoodsService.deleteMicroGoodsByIds(ids));
+    }
+
+    @Log(title = "商品信息", businessType = BusinessType.UPDATE)
+    @PostMapping(value = "grounding", name = "上架")
+    public AjaxResult grounding(@RequestBody CreateGoodsParam param){
+        return toAjax(microGoodsService.grounding(param));
     }
 }

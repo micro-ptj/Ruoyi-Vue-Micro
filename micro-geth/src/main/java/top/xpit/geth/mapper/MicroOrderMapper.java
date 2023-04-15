@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import top.xpit.geth.domain.MicroOrder;
-import top.xpit.geth.domain.query.AppOrderParam;
+import top.xpit.geth.domain.query.AppOrderQueryParam;
 import top.xpit.geth.domain.vo.OrderVo;
 
 /**
@@ -64,5 +64,5 @@ public interface MicroOrderMapper
      */
     public int deleteMicroOrderByIds(Long[] ids);
 
-    List<OrderVo> selectAppOrderList(AppOrderParam param);
+    List<OrderVo> selectAppOrderList(AppOrderQueryParam param);
 }
