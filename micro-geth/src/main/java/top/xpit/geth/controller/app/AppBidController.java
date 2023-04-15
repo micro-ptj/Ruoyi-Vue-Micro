@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import top.xpit.common.core.controller.BaseController;
 import top.xpit.common.core.domain.AjaxResult;
 import top.xpit.common.core.page.TableDataInfo;
+import top.xpit.common.utils.SecurityUtils;
 import top.xpit.geth.domain.MicroBid;
 import top.xpit.geth.domain.MicroGoods;
 import top.xpit.geth.domain.query.AppBidParam;
@@ -25,6 +26,7 @@ public class AppBidController extends BaseController {
 
     @GetMapping("list")
     public TableDataInfo list(AppBidParam param){
+        param.setUserId(SecurityUtils.getAppUserId());
         startPage();
         List<BidVo> list = microBidService.selectAppBidList(param);
         return getDataTable(list);

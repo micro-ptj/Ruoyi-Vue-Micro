@@ -21,13 +21,15 @@ public class BidVo {
     /** 商品标题 */
     private String name;
 
+    private String image;
+
     private Integer category;
 
     /** 出价 */
     private String amount;
 
     /** 竞拍时间 */
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", timezone = "GMT+8")
     private Date bidTime;
 
     /** 竞拍状态 */

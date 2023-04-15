@@ -19,6 +19,7 @@ public class OrderVo {
      * 标题
      */
     private String name;
+    private String image;
 
     /**
      * 商品分类

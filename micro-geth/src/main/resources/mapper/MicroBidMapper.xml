@@ -21,8 +21,9 @@
     <resultMap type="BidVo" id="BidVoResult">
         <result property="id"    column="id"    />
         <result property="name"    column="name"    />
+        <result property="image"    column="image_link"   />
         <result property="category"    column="category"    />
-        <result property="bidTime"    column="order_time"    />
+        <result property="bidTime"    column="bid_time"    />
         <result property="amount"    column="amount"    />
         <result property="status"    column="status"    />
     </resultMap>
@@ -49,6 +50,7 @@
         SELECT
             mb.id,
             mg.name,
+            mg.`image_link`,
             mg.category,
             mb.`amount`,
             mb.bid_time,
