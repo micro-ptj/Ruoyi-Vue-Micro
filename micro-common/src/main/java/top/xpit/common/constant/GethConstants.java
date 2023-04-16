@@ -14,10 +14,9 @@ public class GethConstants {
     /**
      * Geth
      */
-    public static final String PRIVATE_KEY = "11bc7e2094bfcdf33b963c4ce8691d92def54cfd26b195a28bb4ab301c77b32b";
-    public static final String CONTRACT_ADDRESS = "0xfA42B1B9662358ec90CADC78b67614aCb216C598";
+    public static final String PRIVATE_KEY = "4f3d7759038b9901777d0a26cc70380bcc0326c27bebab95acd248664140a8d1";
+    public static final String CONTRACT_ADDRESS = "0x16f04dD3C05408F9eDBDFb8A0b44e6e404f63A8b";
 
-    public static final String GETH_ADDRESS = "0x62E04b39B03c731697c71c9b9A09Ab06f1A0D5c2";
     /* -------------------------物流服务--------------------------------- */
     public static final String EXPRESS_HOST = "https://wuliu.market.alicloudapi.com";
     public static final String EXPRESS_PATH = "/kdi";

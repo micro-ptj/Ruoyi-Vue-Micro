@@ -44,11 +44,11 @@ geth --datadir ./devdata/ --dev --http --http.addr 0.0.0.0 --http.api web3,eth,d
     + Into the java
 
   ```bash
-  web3j generate solidity --abiFile Dapp_sol_Dapp.abi --binFile Dapp_sol_Dapp.bin -o .\src\main\java -p xpit.top.action.contract
+  web3j generate solidity --abiFile GoodsStore.abi --binFile GoodsStore.bin -o . -p top.xpit.geth.contract
   ```
 
   ```bash
-  web3j generate solidity --abiFile GoodsStore.abi --binFile GoodsStore.bin -o .\src\main\java -p top.xpit.action.contract
+  web3j generate solidity --abiFile Escrow.abi --binFile Escrow.bin -o . -p top.xpit.geth.contract  
   ```
   
 ```text

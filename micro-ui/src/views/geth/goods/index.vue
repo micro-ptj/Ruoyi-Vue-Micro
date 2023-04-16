@@ -118,7 +118,7 @@
     <el-table v-loading="loading" :data="goodsList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="id" align="center" prop="id" />
-      <el-table-column label="名称" align="center" prop="name" />
+      <el-table-column label="名称" width="150" align="center" prop="name" />
       <el-table-column label="分类" align="center" prop="category">
         <template slot-scope="scope">
           <dict-tag :options="dict.type.micro_googs_category" :value="scope.row.category"/>
@@ -136,13 +136,13 @@
       </el-table-column>
       <el-table-column label="开始时间" align="center" prop="auctionStartTime" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.auctionStartTime, '{y}-{m}-{d}') }}</span>
+          <span>{{ parseTime(scope.row.auctionStartTime, '{y}-{m}-{d} {h}:{i}:{s}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="间隔时间" align="center" prop="intervalTime" />
+      <el-table-column label="持续时间" align="center" prop="intervalTime" />
       <el-table-column label="结束时间" align="center" prop="auctionEndTime" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.auctionEndTime, '{y}-{m}-{d}') }}</span>
+          <span>{{ parseTime(scope.row.auctionEndTime, '{y}-{m}-{d} {h}:{i}:{s}') }}</span>
         </template>
       </el-table-column>
       <el-table-column label="起拍价" align="center" prop="startPrice" />
@@ -156,9 +156,11 @@
           <dict-tag :options="dict.type.micro_goods_conditions" :value="scope.row.conditions"/>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="合约地址" width="400" align="center" prop="address" />
+      <el-table-column label="操作" width="200" fixed="right" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
+            v-if="scope.row.status == 0"
             size="mini"
             type="text"
             icon="el-icon-edit"
@@ -166,12 +168,21 @@
             v-hasPermi="['geth:goods:edit']"
           >修改</el-button>
           <el-button
+            v-if="scope.row.status == 0"
             size="mini"
             type="text"
-            icon="el-icon-edit"
+            icon="el-icon-upload2"
             @click="handleGrounding(scope.row)"
           >上架</el-button>
           <el-button
+            v-if="scope.row.status == 1"
+            size="mini"
+            type="text"
+            icon="el-icon-download"
+            @click="handleRemove(scope.row)"
+          >下架</el-button>
+          <el-button
+            v-if="scope.row.status == 0"
             size="mini"
             type="text"
             icon="el-icon-delete"
@@ -216,6 +227,7 @@
           <el-date-picker clearable
                           v-model="form.auctionStartTime"
                           type="datetime"
+                          value-format="yyyy-MM-dd HH:mm:ss"
                           placeholder="请选择开始时间">
           </el-date-picker>
         </el-form-item>
@@ -254,7 +266,7 @@
 </template>
 
 <script>
-import {listGoods, getGoods, delGoods, addGoods, updateGoods, groundingGoods} from "@/api/geth/goods";
+import {listGoods, getGoods, delGoods, addGoods, updateGoods, groundingGoods, removeGoods} from "@/api/geth/goods";
 
 export default {
   name: "Goods",
@@ -378,6 +390,13 @@ export default {
       this.groundingParam.goodsId = row.id;
       groundingGoods(this.groundingParam).then(res => {
         this.$modal.msgSuccess("上架成功");
+        this.getList();
+      })
+    },
+    /** 下架 */
+    handleRemove(row){
+      removeGoods(row.id).then(res => {
+        this.$modal.msgSuccess("下架成功");
         this.getList();
       })
     },

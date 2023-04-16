@@ -8,7 +8,8 @@ package top.xpit.geth.constants;
 public enum GethConstantsEnum {
 
     MICRO_BID(100, "micro_bid"),
-    MICRO_GOODS(200, "micro_goods");
+    MICRO_GOODS(200, "micro_goods"),
+    MICRO_ORDER(300, "micro_order");
 
     private int id;
     private String sourceType;

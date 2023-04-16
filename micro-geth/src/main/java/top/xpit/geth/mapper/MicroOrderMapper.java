@@ -65,4 +65,6 @@ public interface MicroOrderMapper
     public int deleteMicroOrderByIds(Long[] ids);
 
     List<OrderVo> selectAppOrderList(AppOrderQueryParam param);
+
+    int selectByTask(Long userId, long longValue);
 }

@@ -68,6 +68,15 @@
           AND mo.`user_id` = #{userId}
         order by mo.id desc
     </select>
+    <select id="selectByTask" resultType="java.lang.Integer">
+        SELECT
+            COUNT(*)
+        FROM
+            micro_order
+        WHERE user_id = #{userId}
+          AND goods_id = #{goodsId}
+          AND del_flag = 0
+    </select>
 
     <insert id="insertMicroOrder" parameterType="MicroOrder" useGeneratedKeys="true" keyProperty="id">
         insert into micro_order

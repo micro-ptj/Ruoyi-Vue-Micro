@@ -68,4 +68,6 @@ public interface MicroUserInfoMapper
     String selectUserInfoByUserIdToPrivateKey(Long appUserId);
 
     String selectPrivateKeyByUserId(Long appUserId);
+
+    Long selectByAddress(String address);
 }

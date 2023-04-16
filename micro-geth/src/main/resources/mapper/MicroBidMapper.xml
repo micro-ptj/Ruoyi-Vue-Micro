@@ -63,6 +63,25 @@
           AND mb.`user_id` = #{userId}
         order by mb.id desc
     </select>
+    <select id="selectWithdraw" resultType="java.lang.Long">
+        SELECT
+            user_id
+        FROM
+            micro_bid
+        WHERE goods_id = #{goodsId}
+    </select>
+    <select id="selectHighestPrice" resultType="java.math.BigDecimal">
+        SELECT
+            amount
+        FROM
+            micro_bid
+        WHERE goods_id = #{goodsId}
+          AND user_id = #{userId}
+          AND del_flag = 0
+          AND `status` = 0
+        ORDER BY amount DESC
+            LIMIT 1
+    </select>
 
     <insert id="insertMicroBid" parameterType="MicroBid" useGeneratedKeys="true" keyProperty="id">
         insert into micro_bid
@@ -107,6 +126,28 @@
             <if test="delFlag != null">del_flag = #{delFlag},</if>
         </trim>
         where id = #{id}
+    </update>
+    <update id="updateBidStatus">
+        UPDATE
+            micro_bid
+        SET
+            `status` = '1',
+            update_time = NOW()
+        WHERE user_id = #{userId}
+          AND goods_id = #{goodsId}
+          AND amount = #{amount}
+          AND `status` = '0'
+          AND del_flag = '0'
+    </update>
+    <update id="updateByFail">
+        UPDATE
+            micro_bid
+        SET
+            `status` = '2',
+            update_time = NOW()
+        WHERE goods_id = #{goodsId}
+          AND `status` = '0'
+          AND del_flag = '0'
     </update>
 
     <delete id="deleteMicroBidById" parameterType="Long">

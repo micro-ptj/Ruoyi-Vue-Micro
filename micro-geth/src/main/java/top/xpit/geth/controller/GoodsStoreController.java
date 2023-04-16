@@ -29,19 +29,6 @@ public class GoodsStoreController extends BaseController {
 //    }
 
 
-    /**
-     * 释放资金
-     */
-    @GetMapping("withdraw/{id}")
-    public AjaxResult withdraw(@PathVariable("id") BigInteger id){
-        return goodsStoreService.withdraw(id);
-    }
 
-    /**
-     * 结束拍卖
-     */
-    @GetMapping("auctionEnd/{id}")
-    public AjaxResult auctionEnd(@PathVariable("id") BigInteger id){
-        return goodsStoreService.auctionEnd(id);
-    }
+
 }

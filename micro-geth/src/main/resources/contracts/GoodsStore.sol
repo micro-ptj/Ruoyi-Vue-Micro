@@ -29,8 +29,8 @@ contract GoodsStore {
         return address(goodsEscrow[_goodsId]);
     }
 
-    function escrowGoodsId(uint _goodsId)public view returns(uint256){
-        return Escrow(goodsEscrow[_goodsId]).goodsId();
+    function escrowWinnerBidder(uint _goodsId)public view returns(address, uint){
+        return Escrow(goodsEscrow[_goodsId]).winnerBidder();
     }
 
     function getContractBalance(uint _goodsId) public view returns (uint256) {

@@ -51,3 +51,11 @@ export function delGoods(id) {
     method: 'delete'
   })
 }
+
+// 下架
+export function removeGoods(id) {
+  return request({
+    url: '/geth/goods/remove/' + id,
+    method: 'get'
+  })
+}

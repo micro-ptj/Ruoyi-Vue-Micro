@@ -99,8 +99,13 @@
 				"type": "uint256"
 			}
 		],
-		"name": "escrowGoodsId",
+		"name": "escrowWinnerBidder",
 		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
 			{
 				"internalType": "uint256",
 				"name": "",

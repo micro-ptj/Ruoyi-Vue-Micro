@@ -70,17 +70,17 @@ public class GoodsStore extends Contract {
     public RemoteFunctionCall<TransactionReceipt> createGoods(BigInteger _startTime, BigInteger _goodsId, BigInteger _biddingTime, String _beneficiary) {
         final Function function = new Function(
                 FUNC_CREATEGOODS, 
-                Arrays.<Type>asList(new Uint256(_startTime),
-                new Uint256(_goodsId),
-                new Uint256(_biddingTime),
-                new Address(160, _beneficiary)),
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_startTime), 
+                new org.web3j.abi.datatypes.generated.Uint256(_goodsId), 
+                new org.web3j.abi.datatypes.generated.Uint256(_biddingTime), 
+                new org.web3j.abi.datatypes.Address(160, _beneficiary)), 
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
     }
 
     public RemoteFunctionCall<String> escrowAddress(BigInteger _goodsId) {
         final Function function = new Function(FUNC_ESCROWADDRESS, 
-                Arrays.<Type>asList(new Uint256(_goodsId)),
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_goodsId)), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<Address>() {}));
         return executeRemoteCallSingleValueReturn(function, String.class);
     }
@@ -88,29 +88,29 @@ public class GoodsStore extends Contract {
     public RemoteFunctionCall<TransactionReceipt> escrowAuctionEnd(BigInteger _goodsId) {
         final Function function = new Function(
                 FUNC_ESCROWAUCTIONEND, 
-                Arrays.<Type>asList(new Uint256(_goodsId)),
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_goodsId)), 
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
     }
 
     public RemoteFunctionCall<BigInteger> escrowAuctionEndTime(BigInteger _goodsId) {
         final Function function = new Function(FUNC_ESCROWAUCTIONENDTIME, 
-                Arrays.<Type>asList(new Uint256(_goodsId)),
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_goodsId)), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<Uint256>() {}));
         return executeRemoteCallSingleValueReturn(function, BigInteger.class);
     }
 
-    public RemoteFunctionCall<TransactionReceipt> escrowBid(BigInteger _goodsId, BigInteger amount) {
+    public RemoteFunctionCall<TransactionReceipt> escrowBid(BigInteger _goodsId) {
         final Function function = new Function(
                 FUNC_ESCROWBID, 
-                Arrays.<Type>asList(new Uint256(_goodsId)),
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_goodsId)), 
                 Collections.<TypeReference<?>>emptyList());
-        return executeRemoteCallTransaction(function, amount);
+        return executeRemoteCallTransaction(function);
     }
 
     public RemoteFunctionCall<Tuple2<String, BigInteger>> escrowWinnerBidder(BigInteger _goodsId) {
         final Function function = new Function(FUNC_ESCROWWINNERBIDDER, 
-                Arrays.<Type>asList(new Uint256(_goodsId)),
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_goodsId)), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<Address>() {}, new TypeReference<Uint256>() {}));
         return new RemoteFunctionCall<Tuple2<String, BigInteger>>(function,
                 new Callable<Tuple2<String, BigInteger>>() {
@@ -127,14 +127,14 @@ public class GoodsStore extends Contract {
     public RemoteFunctionCall<TransactionReceipt> escrowWithdraw(BigInteger _goodsId) {
         final Function function = new Function(
                 FUNC_ESCROWWITHDRAW, 
-                Arrays.<Type>asList(new Uint256(_goodsId)),
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_goodsId)), 
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
     }
 
     public RemoteFunctionCall<BigInteger> getContractBalance(BigInteger _goodsId) {
         final Function function = new Function(FUNC_GETCONTRACTBALANCE, 
-                Arrays.<Type>asList(new Uint256(_goodsId)),
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_goodsId)), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<Uint256>() {}));
         return executeRemoteCallSingleValueReturn(function, BigInteger.class);
     }

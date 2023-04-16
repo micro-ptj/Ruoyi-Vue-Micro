@@ -62,4 +62,8 @@ public interface IMicroGoodsService
     public int deleteMicroGoodsById(Long id);
 
     int grounding(CreateGoodsParam param);
+
+    List<Long> queryGoodsEnd();
+
+    int remove(Long id);
 }

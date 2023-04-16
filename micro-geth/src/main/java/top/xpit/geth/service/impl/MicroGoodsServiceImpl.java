@@ -18,6 +18,7 @@ import top.xpit.common.utils.SecurityUtils;
 import top.xpit.geth.domain.query.CreateGoodsParam;
 import top.xpit.geth.mapper.MicroGoodsMapper;
 import top.xpit.geth.domain.MicroGoods;
+import top.xpit.geth.service.EscrowService;
 import top.xpit.geth.service.GoodsStoreService;
 import top.xpit.geth.service.IMicroGoodsService;
 import top.xpit.system.service.ISysConfigService;
@@ -34,7 +35,7 @@ import top.xpit.system.service.ISysConfigService;
 public class MicroGoodsServiceImpl implements IMicroGoodsService 
 {
     private final MicroGoodsMapper microGoodsMapper;
-
+    private final EscrowService escrowService;
     private final RedisCache redisCache;
     private final GoodsStoreService goodsStoreService;
     /**
@@ -111,6 +112,11 @@ public class MicroGoodsServiceImpl implements IMicroGoodsService
         return microGoodsMapper.deleteMicroGoodsById(id);
     }
 
+    /**
+     * 商品上架
+     * @param param
+     * @return
+     */
     @Transactional(rollbackFor = Exception.class)
     @Override
     public int grounding(CreateGoodsParam param){
@@ -125,11 +131,21 @@ public class MicroGoodsServiceImpl implements IMicroGoodsService
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
+        goodsStoreService.createGoods(param);
+        String escrowAddress = escrowService.escrowAddress(param.getGoodsId());
+        param.setEscrowAddress(escrowAddress);
         int rows = microGoodsMapper.grounding(param);
 
-        boolean b = goodsStoreService.createGoods(param);
-        log.debug("------------------------->" + b);
-
         return rows;
+    }
+
+    @Override
+    public List<Long> queryGoodsEnd() {
+        return microGoodsMapper.queryGoodsEnd();
+    }
+
+    @Override
+    public int remove(Long id) {
+        return microGoodsMapper.remove(id);
     }
 }

@@ -3,6 +3,8 @@ package top.xpit.geth.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+import lombok.ToString;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import top.xpit.common.annotation.Excel;
@@ -14,6 +16,8 @@ import top.xpit.common.core.domain.BaseEntity;
  * @author PTJ
  * @date 2023-04-02
  */
+@Data
+@ToString
 public class MicroGoods extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
@@ -38,8 +42,8 @@ public class MicroGoods extends BaseEntity
     private String description;
 
     /** 开始时间 */
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "开始时间", width = 30, dateFormat = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Excel(name = "开始时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
     private Date auctionStartTime;
 
     /** 间隔时间 */
@@ -47,8 +51,8 @@ public class MicroGoods extends BaseEntity
     private Long intervalTime;
 
     /** 结束时间 */
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "结束时间", width = 30, dateFormat = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Excel(name = "结束时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
     private Date auctionEndTime;
 
     /** 起拍价 */
@@ -66,134 +70,5 @@ public class MicroGoods extends BaseEntity
     /**  */
     private Long delFlag;
 
-    public void setId(Long id) 
-    {
-        this.id = id;
-    }
-
-    public Long getId() 
-    {
-        return id;
-    }
-    public void setName(String name) 
-    {
-        this.name = name;
-    }
-
-    public String getName() 
-    {
-        return name;
-    }
-    public void setCategory(Long category) 
-    {
-        this.category = category;
-    }
-
-    public Long getCategory() 
-    {
-        return category;
-    }
-    public void setImageLink(String imageLink) 
-    {
-        this.imageLink = imageLink;
-    }
-
-    public String getImageLink() 
-    {
-        return imageLink;
-    }
-    public void setDescription(String description) 
-    {
-        this.description = description;
-    }
-
-    public String getDescription() 
-    {
-        return description;
-    }
-    public void setAuctionStartTime(Date auctionStartTime) 
-    {
-        this.auctionStartTime = auctionStartTime;
-    }
-
-    public Date getAuctionStartTime() 
-    {
-        return auctionStartTime;
-    }
-    public void setIntervalTime(Long intervalTime) 
-    {
-        this.intervalTime = intervalTime;
-    }
-
-    public Long getIntervalTime() 
-    {
-        return intervalTime;
-    }
-    public void setAuctionEndTime(Date auctionEndTime) 
-    {
-        this.auctionEndTime = auctionEndTime;
-    }
-
-    public Date getAuctionEndTime() 
-    {
-        return auctionEndTime;
-    }
-    public void setStartPrice(BigDecimal startPrice) 
-    {
-        this.startPrice = startPrice;
-    }
-
-    public BigDecimal getStartPrice() 
-    {
-        return startPrice;
-    }
-    public void setStatus(Long status) 
-    {
-        this.status = status;
-    }
-
-    public Long getStatus() 
-    {
-        return status;
-    }
-    public void setConditions(Long conditions) 
-    {
-        this.conditions = conditions;
-    }
-
-    public Long getConditions() 
-    {
-        return conditions;
-    }
-    public void setDelFlag(Long delFlag) 
-    {
-        this.delFlag = delFlag;
-    }
-
-    public Long getDelFlag() 
-    {
-        return delFlag;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("id", getId())
-            .append("name", getName())
-            .append("category", getCategory())
-            .append("imageLink", getImageLink())
-            .append("description", getDescription())
-            .append("auctionStartTime", getAuctionStartTime())
-            .append("intervalTime", getIntervalTime())
-            .append("auctionEndTime", getAuctionEndTime())
-            .append("startPrice", getStartPrice())
-            .append("status", getStatus())
-            .append("conditions", getConditions())
-            .append("createTime", getCreateTime())
-            .append("createBy", getCreateBy())
-            .append("updateTime", getUpdateTime())
-            .append("updateBy", getUpdateBy())
-            .append("delFlag", getDelFlag())
-            .toString();
-    }
+    private String address;
 }

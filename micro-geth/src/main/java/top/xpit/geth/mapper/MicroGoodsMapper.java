@@ -61,4 +61,8 @@ public interface MicroGoodsMapper
     public int deleteMicroGoodsByIds(Long[] ids);
 
     int grounding(CreateGoodsParam param);
+
+    List<Long> queryGoodsEnd();
+
+    int remove(Long id);
 }

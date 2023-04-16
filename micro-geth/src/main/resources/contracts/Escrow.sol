@@ -62,8 +62,8 @@ contract Escrow {
         }
     }
 
-    function goodsId() public view returns(uint) {
-        return uniqueItemId;
+    function winnerBidder() public view returns(address, uint) {
+        return (highestBidder, highestBid);
     }
 
     function getAuctionEndTime() public view returns(uint){

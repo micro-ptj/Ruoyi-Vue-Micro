@@ -1,6 +1,7 @@
 package top.xpit.geth.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.web3j.crypto.CipherException;
@@ -42,6 +43,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public String login(AppLoginUserParam param) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         if (Objects.isNull(param)){
             throw new NullPointerException("用户名密码不能为空");
         }else {
@@ -49,7 +51,9 @@ public class LoginServiceImpl implements LoginService {
             if (Objects.isNull(appUser)){
                 throw new UserNotExistsException();
             }else {
-                if (appUser.getPassword().equals(param.getPassword())){
+
+//                if (appUser.getPassword().equals(param.getPassword())){
+                if (passwordEncoder.matches(param.getPassword(), appUser.getPassword())){
                     MicroUserInfo userInfo = microUserInfoMapper.selectByUserId(appUser.getId());
 
 
@@ -75,6 +79,7 @@ public class LoginServiceImpl implements LoginService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean register(AppRegisterUserParam param) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         if (Objects.isNull(param)){
             throw new RuntimeException("请输入内容");
         }else {
@@ -84,7 +89,7 @@ public class LoginServiceImpl implements LoginService {
             }
             MicroAppUser appUser = new MicroAppUser();
             appUser.setPhone(param.getPhone());
-            appUser.setPassword(param.getPassword());
+            appUser.setPassword(passwordEncoder.encode(param.getPassword()));
             int i = microAppUserMapper.insertMicroAppUser(appUser);
             MicroUserInfo account = new MicroUserInfo();
             try {

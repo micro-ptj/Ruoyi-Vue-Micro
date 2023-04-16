@@ -109,4 +109,10 @@ public class MicroGoodsController extends BaseController
     public AjaxResult grounding(@RequestBody CreateGoodsParam param){
         return toAjax(microGoodsService.grounding(param));
     }
+
+    @Log(title = "商品信息", businessType = BusinessType.UPDATE)
+    @GetMapping(value = "remove/{id}")
+    public AjaxResult remove(@PathVariable("id") Long id){
+        return toAjax(microGoodsService.remove(id));
+    }
 }

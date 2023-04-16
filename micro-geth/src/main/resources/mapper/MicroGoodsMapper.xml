@@ -16,6 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="startPrice"    column="start_price"    />
         <result property="status"    column="status"    />
         <result property="conditions"    column="conditions"    />
+        <result property="address"    column="address"    />
         <result property="createTime"    column="create_time"    />
         <result property="createBy"    column="create_by"    />
         <result property="updateTime"    column="update_time"    />
@@ -24,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectMicroGoodsVo">
-        select id, name, category, image_link, description, auction_start_time, interval_time, auction_end_time, start_price, status, conditions, create_time, create_by, update_time, update_by, del_flag from micro_goods
+        select id, name, category, image_link, description, auction_start_time, interval_time, auction_end_time, start_price, status, conditions, address, create_time, create_by, update_time, update_by, del_flag from micro_goods
     </sql>
 
     <select id="selectMicroGoodsList" parameterType="MicroGoods" resultMap="MicroGoodsResult">
@@ -39,6 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="startPrice != null "> and start_price = #{startPrice}</if>
             <if test="status != null "> and status = #{status}</if>
             <if test="conditions != null "> and conditions = #{conditions}</if>
+            <if test="address != null  and address != ''"> and address = #{address}</if>
         </where>
     </select>
     
@@ -46,7 +48,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectMicroGoodsVo"/>
         where id = #{id}
     </select>
-        
+    <select id="queryGoodsEnd" resultType="java.lang.Long">
+        SELECT
+        id
+        FROM
+        micro_goods
+        WHERE auction_end_time &lt; NOW()
+        AND `status` = 1
+        AND del_flag = 0
+    </select>
+
     <insert id="insertMicroGoods" parameterType="MicroGoods" useGeneratedKeys="true" keyProperty="id">
         insert into micro_goods
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -60,6 +71,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="startPrice != null">start_price,</if>
             <if test="status != null">status,</if>
             <if test="conditions != null">conditions,</if>
+            <if test="address != null">address,</if>
             <if test="createTime != null">create_time,</if>
             <if test="createBy != null">create_by,</if>
             <if test="updateTime != null">update_time,</if>
@@ -77,6 +89,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="startPrice != null">#{startPrice},</if>
             <if test="status != null">#{status},</if>
             <if test="conditions != null">#{conditions},</if>
+            <if test="address != null">#{address},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="updateTime != null">#{updateTime},</if>
@@ -98,6 +111,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="startPrice != null">start_price = #{startPrice},</if>
             <if test="status != null">status = #{status},</if>
             <if test="conditions != null">conditions = #{conditions},</if>
+            <if test="address != null">address = #{address},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>
@@ -108,7 +122,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <update id="grounding">
-        update micro_goods set status = 1, auction_end_time = #{endTime}, update_time = NOW(), update_by = #{userId}  where id = #{goodsId}
+        update micro_goods set status = 1, address = #{escrowAddress}, auction_end_time = #{endTime}, update_time = NOW(), update_by = #{userId}  where id = #{goodsId}
+    </update>
+    <update id="remove">
+        update micro_goods set status = 0 where id = #{id}
     </update>
 
     <delete id="deleteMicroGoodsById" parameterType="Long">

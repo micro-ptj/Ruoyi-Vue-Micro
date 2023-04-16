@@ -17,7 +17,7 @@ ruoyi:
 
 web3j:
     admin-client: true
-    client-address: http://43.139.95.248:8545
+    client-address: ${web3-address}
     http-timeout-seconds: 600
     network-id: 1337
 
@@ -42,7 +42,7 @@ server:
 # 日志配置
 logging:
     level:
-        com.ruoyi: debug
+        top.xpit: debug
         org.springframework: warn
 
 # 用户配置
@@ -74,13 +74,13 @@ spring:
     # redis 配置
     redis:
         # 地址
-        host: redis.micro
+        host: ${redis-host}
         # 端口，默认为6379
-        port: 6379
+        port: ${redis-port}
         # 数据库索引
         database: 0
         # 密码
-        password: qwer1234
+        password: ${redis-password}
         # 连接超时时间
         timeout: 10s
         lettuce:
@@ -99,9 +99,10 @@ spring:
         druid:
             # 主库数据源
             master:
-                url: jdbc:mysql://sh-cynosdbmysql-grp-eabmykda.sql.tencentcdb.com:25049/micro?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-                username: root
-                password: Pl@1221view
+#                url: jdbc:mysql://sh-cynosdbmysql-grp-eabmykda.sql.tencentcdb.com:25049/micro?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+                url: jdbc:mysql://${mysql-host}:${mysql-port}/${mysql-database}?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+                username: ${mysql-username}
+                password: ${mysql-password}
             # 从库数据源
             slave:
                 # 从数据源开关/默认关闭
@@ -140,7 +141,7 @@ spring:
                 allow:
                 url-pattern: /druid/*
                 # 控制台管理用户名和密码
-                login-username: ruoyi
+                login-username: micro
                 login-password: 123456
             filter:
                 stat:

@@ -24,7 +24,7 @@ public class CreateGoodsParam {
     private BigInteger interval;
 
     private String address;
-
+    private String escrowAddress;
     private BigInteger startTimeStamp;
     private Date startTime;
     private Date endTime;
