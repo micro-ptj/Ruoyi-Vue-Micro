@@ -21,7 +21,7 @@ import top.xpit.quartz.domain.SysJob;
 /**
  * 定时任务工具类
  * 
- * @author ruoyi
+ * @author PTJ
  *
  */
 public class ScheduleUtils

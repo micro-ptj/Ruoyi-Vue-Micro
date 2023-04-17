@@ -17,7 +17,7 @@ import top.xpit.system.service.ISysUserService;
 /**
  * 用户验证处理
  *
- * @author ruoyi
+ * @author PTJ
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService

@@ -7,7 +7,7 @@ import top.xpit.system.domain.SysUserRole;
 /**
  * 用户与角色关联表 数据层
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public interface SysUserRoleMapper
 {

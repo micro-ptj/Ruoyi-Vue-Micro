@@ -17,7 +17,7 @@ import top.xpit.common.enums.HttpMethod;
 /**
  * 防止XSS攻击的过滤器
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class XssFilter implements Filter
 {

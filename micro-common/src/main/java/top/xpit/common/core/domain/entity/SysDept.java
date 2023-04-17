@@ -13,7 +13,7 @@ import top.xpit.common.core.domain.BaseEntity;
 /**
  * 部门表 sys_dept
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class SysDept extends BaseEntity
 {

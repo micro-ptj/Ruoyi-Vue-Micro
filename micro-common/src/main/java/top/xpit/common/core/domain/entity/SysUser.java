@@ -15,7 +15,7 @@ import top.xpit.common.xss.Xss;
 /**
  * 用户对象 sys_user
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class SysUser extends BaseEntity
 {

@@ -7,7 +7,7 @@ import top.xpit.common.utils.DateUtils;
 /**
  * JVM相关信息
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class Jvm
 {

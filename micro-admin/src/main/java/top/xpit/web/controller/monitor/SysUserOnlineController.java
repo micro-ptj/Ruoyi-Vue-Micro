@@ -26,7 +26,7 @@ import top.xpit.system.service.ISysUserOnlineService;
 /**
  * 在线用户监控
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @RestController
 @RequestMapping("/monitor/online")

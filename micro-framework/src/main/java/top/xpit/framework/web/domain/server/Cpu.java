@@ -5,7 +5,7 @@ import top.xpit.common.utils.Arith;
 /**
  * CPU相关信息
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class Cpu
 {

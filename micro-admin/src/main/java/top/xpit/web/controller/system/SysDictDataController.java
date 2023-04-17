@@ -28,7 +28,7 @@ import top.xpit.system.service.ISysDictTypeService;
 /**
  * 数据字典信息
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @RestController
 @RequestMapping("/system/dict/data")

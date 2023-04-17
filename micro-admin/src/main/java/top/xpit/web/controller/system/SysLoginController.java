@@ -20,7 +20,7 @@ import top.xpit.system.service.ISysMenuService;
 /**
  * 登录验证
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @RestController
 public class SysLoginController

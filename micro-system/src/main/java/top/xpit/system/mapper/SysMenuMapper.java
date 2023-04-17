@@ -7,7 +7,7 @@ import top.xpit.common.core.domain.entity.SysMenu;
 /**
  * 菜单表 数据层
  *
- * @author ruoyi
+ * @author PTJ
  */
 public interface SysMenuMapper
 {

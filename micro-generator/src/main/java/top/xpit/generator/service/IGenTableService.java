@@ -7,7 +7,7 @@ import top.xpit.generator.domain.GenTable;
 /**
  * 业务 服务层
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public interface IGenTableService
 {

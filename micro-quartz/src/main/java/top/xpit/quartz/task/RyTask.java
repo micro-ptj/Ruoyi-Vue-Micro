@@ -6,7 +6,7 @@ import top.xpit.common.utils.StringUtils;
 /**
  * 定时任务调度测试
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @Component("ryTask")
 public class RyTask

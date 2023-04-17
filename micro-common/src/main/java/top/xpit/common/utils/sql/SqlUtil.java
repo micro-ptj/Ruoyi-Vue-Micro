@@ -6,7 +6,7 @@ import top.xpit.common.utils.StringUtils;
 /**
  * sql操作工具类
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class SqlUtil
 {

@@ -18,7 +18,7 @@ import top.xpit.common.utils.StringUtils;
 /**
  * 全局异常处理器
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler

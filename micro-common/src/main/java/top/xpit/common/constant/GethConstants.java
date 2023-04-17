@@ -1,7 +1,7 @@
 package top.xpit.common.constant;
 
 /**
- * @Author: ptj
+ * @Author: PTJ
  * @Date: 2023/02/09/13:37
  * @Description: 系统变量
  */

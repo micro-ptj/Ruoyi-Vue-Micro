@@ -3,7 +3,7 @@ package top.xpit.common.enums;
 /**
  * 操作人类别
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public enum OperatorType
 {

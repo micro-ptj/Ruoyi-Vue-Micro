@@ -3,7 +3,7 @@ package top.xpit.system.domain;
 /**
  * 当前在线会话
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class SysUserOnline
 {

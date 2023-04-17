@@ -30,7 +30,7 @@ import top.xpit.quartz.util.ScheduleUtils;
 /**
  * 调度任务信息操作处理
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @RestController
 @RequestMapping("/monitor/job")

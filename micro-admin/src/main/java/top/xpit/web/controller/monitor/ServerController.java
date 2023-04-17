@@ -10,7 +10,7 @@ import top.xpit.framework.web.domain.Server;
 /**
  * 服务器监控
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @RestController
 @RequestMapping("/monitor/server")

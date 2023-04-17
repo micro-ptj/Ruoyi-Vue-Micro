@@ -7,7 +7,7 @@ import top.xpit.common.constant.Constants;
 /**
  * VelocityEngine工厂
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class VelocityInitializer
 {

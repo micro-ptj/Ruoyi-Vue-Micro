@@ -6,7 +6,7 @@ import top.xpit.system.domain.SysNotice;
 /**
  * 通知公告表 数据层
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public interface SysNoticeMapper
 {

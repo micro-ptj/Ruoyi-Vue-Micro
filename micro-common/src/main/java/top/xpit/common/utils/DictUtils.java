@@ -11,7 +11,7 @@ import top.xpit.common.utils.spring.SpringUtils;
 /**
  * 字典工具类
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class DictUtils
 {

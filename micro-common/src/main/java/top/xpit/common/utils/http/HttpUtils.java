@@ -25,7 +25,7 @@ import top.xpit.common.utils.StringUtils;
 /**
  * 通用http发送方法
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class HttpUtils
 {

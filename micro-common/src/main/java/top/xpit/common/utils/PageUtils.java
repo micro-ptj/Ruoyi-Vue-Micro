@@ -8,7 +8,7 @@ import top.xpit.common.utils.sql.SqlUtil;
 /**
  * 分页工具类
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class PageUtils extends PageHelper
 {

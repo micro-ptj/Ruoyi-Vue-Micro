@@ -4,7 +4,7 @@ import top.xpit.geth.domain.query.AppLoginUserParam;
 import top.xpit.geth.domain.query.AppRegisterUserParam;
 
 /**
- * @Author: ptj
+ * @Author: PTJ
  * @Date: 2023/03/12/17:29
  * @Description:
  */

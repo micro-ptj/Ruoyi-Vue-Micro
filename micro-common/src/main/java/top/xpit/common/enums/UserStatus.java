@@ -3,7 +3,7 @@ package top.xpit.common.enums;
 /**
  * 用户状态
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public enum UserStatus
 {

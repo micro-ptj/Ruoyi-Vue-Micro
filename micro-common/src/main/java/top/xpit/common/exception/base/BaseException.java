@@ -6,7 +6,7 @@ import top.xpit.common.utils.StringUtils;
 /**
  * 基础异常
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class BaseException extends RuntimeException
 {

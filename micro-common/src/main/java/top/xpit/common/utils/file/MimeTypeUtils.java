@@ -3,7 +3,7 @@ package top.xpit.common.utils.file;
 /**
  * 媒体类型工具类
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class MimeTypeUtils
 {

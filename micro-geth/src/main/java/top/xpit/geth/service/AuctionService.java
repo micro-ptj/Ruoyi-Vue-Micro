@@ -5,7 +5,7 @@ import top.xpit.geth.domain.query.AppBidParam;
 import java.math.BigInteger;
 
 /**
- * @Author: ptj
+ * @Author: PTJ
  * @Date: 2023/04/15/14:41
  * @Description:
  */

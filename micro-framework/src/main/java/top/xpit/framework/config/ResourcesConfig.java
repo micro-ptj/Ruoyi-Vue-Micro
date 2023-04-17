@@ -18,7 +18,7 @@ import top.xpit.framework.interceptor.RepeatSubmitInterceptor;
 /**
  * 通用配置
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @Configuration
 public class ResourcesConfig implements WebMvcConfigurer

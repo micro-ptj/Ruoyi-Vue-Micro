@@ -7,7 +7,7 @@ import top.xpit.common.core.text.Convert;
 /**
  * 权限信息
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class PermissionContextHolder
 {

@@ -10,7 +10,7 @@ import top.xpit.common.core.domain.entity.SysMenu;
 /**
  * Treeselect树结构实体类
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class TreeSelect implements Serializable
 {

@@ -14,7 +14,7 @@ import top.xpit.system.service.ISysConfigService;
 /**
  * 注册验证
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @RestController
 public class SysRegisterController extends BaseController

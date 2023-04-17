@@ -12,7 +12,7 @@ import top.xpit.common.core.domain.BaseEntity;
 /**
  * 字典类型表 sys_dict_type
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class SysDictType extends BaseEntity
 {

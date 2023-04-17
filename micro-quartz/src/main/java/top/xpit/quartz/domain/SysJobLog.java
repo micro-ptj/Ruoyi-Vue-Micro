@@ -9,7 +9,7 @@ import top.xpit.common.core.domain.BaseEntity;
 /**
  * 定时任务调度日志表 sys_job_log
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class SysJobLog extends BaseEntity
 {

@@ -24,7 +24,7 @@ import top.xpit.framework.config.ServerConfig;
 /**
  * 通用请求处理
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @RestController
 @RequestMapping("/common")

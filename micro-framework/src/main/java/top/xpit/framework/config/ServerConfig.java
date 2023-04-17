@@ -7,7 +7,7 @@ import top.xpit.common.utils.ServletUtils;
 /**
  * 服务相关配置
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @Component
 public class ServerConfig

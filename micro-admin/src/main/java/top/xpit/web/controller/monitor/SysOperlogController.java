@@ -22,7 +22,7 @@ import top.xpit.system.service.ISysOperLogService;
 /**
  * 操作日志记录
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @RestController
 @RequestMapping("/monitor/operlog")

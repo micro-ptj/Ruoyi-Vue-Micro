@@ -3,7 +3,7 @@ package top.xpit.common.constant;
 /**
  * 返回状态码
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class HttpStatus
 {

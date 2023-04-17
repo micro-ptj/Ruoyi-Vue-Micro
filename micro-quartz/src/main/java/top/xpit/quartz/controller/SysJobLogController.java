@@ -22,7 +22,7 @@ import top.xpit.quartz.service.ISysJobLogService;
 /**
  * 调度日志操作处理
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @RestController
 @RequestMapping("/monitor/jobLog")

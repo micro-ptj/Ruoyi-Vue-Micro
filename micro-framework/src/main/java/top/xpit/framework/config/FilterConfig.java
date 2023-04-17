@@ -15,7 +15,7 @@ import top.xpit.common.utils.StringUtils;
 /**
  * Filter配置
  *
- * @author ruoyi
+ * @author PTJ
  */
 @Configuration
 public class FilterConfig

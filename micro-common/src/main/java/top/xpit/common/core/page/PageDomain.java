@@ -5,7 +5,7 @@ import top.xpit.common.utils.StringUtils;
 /**
  * 分页数据
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class PageDomain
 {

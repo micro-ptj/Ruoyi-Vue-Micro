@@ -19,7 +19,7 @@ import top.xpit.quartz.service.ISysJobLogService;
 /**
  * 抽象quartz调用
  *
- * @author ruoyi
+ * @author PTJ
  */
 public abstract class AbstractQuartzJob implements Job
 {

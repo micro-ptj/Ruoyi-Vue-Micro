@@ -10,7 +10,7 @@ import top.xpit.system.service.ISysOperLogService;
 /**
  * 操作日志 服务层处理
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @Service
 public class SysOperLogServiceImpl implements ISysOperLogService

@@ -9,7 +9,7 @@ import top.xpit.system.service.ISysUserOnlineService;
 /**
  * 在线用户 服务层处理
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @Service
 public class SysUserOnlineServiceImpl implements ISysUserOnlineService

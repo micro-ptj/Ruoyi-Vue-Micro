@@ -11,7 +11,7 @@ import top.xpit.common.utils.StringUtils;
 /**
  * 业务表 gen_table
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class GenTable extends BaseEntity
 {

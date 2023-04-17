@@ -33,7 +33,7 @@ import top.xpit.system.domain.SysOperLog;
 /**
  * 操作日志记录处理
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @Aspect
 @Component

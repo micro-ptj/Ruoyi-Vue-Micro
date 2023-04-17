@@ -3,7 +3,7 @@ package top.xpit.common.constant;
 /**
  * 任务调度通用常量
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class ScheduleConstants
 {

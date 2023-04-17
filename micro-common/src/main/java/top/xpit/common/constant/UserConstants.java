@@ -3,7 +3,7 @@ package top.xpit.common.constant;
 /**
  * 用户常量信息
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class UserConstants
 {

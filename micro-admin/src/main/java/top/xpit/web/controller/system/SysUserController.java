@@ -35,7 +35,7 @@ import top.xpit.system.service.ISysUserService;
 /**
  * 用户信息
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @RestController
 @RequestMapping("/system/user")

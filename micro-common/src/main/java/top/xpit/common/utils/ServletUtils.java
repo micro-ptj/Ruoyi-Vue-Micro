@@ -20,7 +20,7 @@ import top.xpit.common.core.text.Convert;
 /**
  * 客户端工具类
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class ServletUtils
 {

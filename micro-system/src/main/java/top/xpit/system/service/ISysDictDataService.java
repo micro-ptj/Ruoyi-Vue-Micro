@@ -6,7 +6,7 @@ import top.xpit.common.core.domain.entity.SysDictData;
 /**
  * 字典 业务层
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public interface ISysDictDataService
 {

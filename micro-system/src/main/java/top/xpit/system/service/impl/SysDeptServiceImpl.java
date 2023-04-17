@@ -24,7 +24,7 @@ import top.xpit.system.service.ISysDeptService;
 /**
  * 部门管理 服务实现
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @Service
 public class SysDeptServiceImpl implements ISysDeptService

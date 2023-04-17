@@ -12,7 +12,7 @@ import top.xpit.common.core.domain.BaseEntity;
 /**
  * 岗位表 sys_post
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class SysPost extends BaseEntity
 {

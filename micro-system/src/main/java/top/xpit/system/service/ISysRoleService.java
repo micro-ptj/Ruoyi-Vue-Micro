@@ -8,7 +8,7 @@ import top.xpit.system.domain.SysUserRole;
 /**
  * 角色业务层
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public interface ISysRoleService
 {

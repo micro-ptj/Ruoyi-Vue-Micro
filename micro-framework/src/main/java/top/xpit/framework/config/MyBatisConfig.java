@@ -27,7 +27,7 @@ import top.xpit.common.utils.StringUtils;
 /**
  * Mybatis支持*匹配扫描包
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @Configuration
 public class MyBatisConfig

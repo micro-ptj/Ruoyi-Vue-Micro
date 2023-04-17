@@ -9,7 +9,7 @@ import top.xpit.common.utils.spring.SpringUtils;
 /**
  * 异步任务管理器
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class AsyncManager
 {

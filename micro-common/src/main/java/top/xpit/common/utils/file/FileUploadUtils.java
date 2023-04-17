@@ -18,7 +18,7 @@ import top.xpit.common.utils.uuid.Seq;
 /**
  * 文件上传工具类
  *
- * @author ruoyi
+ * @author PTJ
  */
 public class FileUploadUtils
 {

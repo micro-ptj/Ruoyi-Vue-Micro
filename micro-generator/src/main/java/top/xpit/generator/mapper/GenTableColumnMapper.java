@@ -6,7 +6,7 @@ import top.xpit.generator.domain.GenTableColumn;
 /**
  * 业务字段 数据层
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public interface GenTableColumnMapper
 {

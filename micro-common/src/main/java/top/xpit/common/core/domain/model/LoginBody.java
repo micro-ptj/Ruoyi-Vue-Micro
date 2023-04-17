@@ -3,7 +3,7 @@ package top.xpit.common.core.domain.model;
 /**
  * 用户登录对象
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class LoginBody
 {

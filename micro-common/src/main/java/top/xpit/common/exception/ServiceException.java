@@ -3,7 +3,7 @@ package top.xpit.common.exception;
 /**
  * 业务异常
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public final class ServiceException extends RuntimeException
 {

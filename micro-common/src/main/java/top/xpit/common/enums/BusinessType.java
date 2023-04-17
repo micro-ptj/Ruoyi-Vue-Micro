@@ -3,7 +3,7 @@ package top.xpit.common.enums;
 /**
  * 业务操作类型
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public enum BusinessType
 {

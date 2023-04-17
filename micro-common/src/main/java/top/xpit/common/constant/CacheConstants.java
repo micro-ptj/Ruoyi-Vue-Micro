@@ -3,7 +3,7 @@ package top.xpit.common.constant;
 /**
  * 缓存的key 常量
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class CacheConstants
 {

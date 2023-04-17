@@ -25,7 +25,7 @@ import top.xpit.system.service.ISysDeptService;
 /**
  * 部门信息
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @RestController
 @RequestMapping("/system/dept")

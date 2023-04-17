@@ -7,7 +7,7 @@ import top.xpit.common.utils.StringUtils;
 /**
  * 字符集工具类
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class CharsetKit
 {

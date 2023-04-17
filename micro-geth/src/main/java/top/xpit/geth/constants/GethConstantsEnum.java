@@ -1,7 +1,7 @@
 package top.xpit.geth.constants;
 
 /**
- * @Author: ptj
+ * @Author: PTJ
  * @Date: 2023/04/15/18:35
  * @Description:
  */

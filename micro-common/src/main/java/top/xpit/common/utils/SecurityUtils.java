@@ -11,7 +11,7 @@ import top.xpit.common.exception.ServiceException;
 /**
  * 安全服务工具类
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class SecurityUtils
 {

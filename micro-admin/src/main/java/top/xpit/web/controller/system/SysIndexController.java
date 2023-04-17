@@ -9,7 +9,7 @@ import top.xpit.common.utils.StringUtils;
 /**
  * 首页
  *
- * @author ruoyi
+ * @author PTJ
  */
 @RestController
 public class SysIndexController

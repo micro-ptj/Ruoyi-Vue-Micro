@@ -11,7 +11,7 @@ import top.xpit.common.enums.LimitType;
 /**
  * 限流注解
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

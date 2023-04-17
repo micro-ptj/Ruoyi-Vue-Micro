@@ -3,7 +3,7 @@ package top.xpit.common.exception;
 /**
  * 工具类异常
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class UtilException extends RuntimeException
 {

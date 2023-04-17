@@ -6,7 +6,7 @@ import top.xpit.common.core.domain.entity.SysUser;
 /**
  * 用户 业务层
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public interface ISysUserService
 {

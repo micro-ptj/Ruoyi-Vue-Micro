@@ -7,7 +7,7 @@ import top.xpit.common.utils.StringUtils;
 /**
  * 操作消息提醒
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class AjaxResult extends HashMap<String, Object>
 {

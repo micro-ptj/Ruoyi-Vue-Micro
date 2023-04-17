@@ -9,7 +9,7 @@ import top.xpit.common.utils.StringUtils;
 /**
  * 获取IP方法
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class IpUtils
 {

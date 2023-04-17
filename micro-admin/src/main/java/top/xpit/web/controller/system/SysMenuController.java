@@ -24,7 +24,7 @@ import top.xpit.system.service.ISysMenuService;
 /**
  * 菜单信息
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @RestController
 @RequestMapping("/system/menu")

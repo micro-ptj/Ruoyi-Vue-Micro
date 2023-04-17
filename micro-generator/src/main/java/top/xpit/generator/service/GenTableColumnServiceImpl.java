@@ -10,7 +10,7 @@ import top.xpit.generator.mapper.GenTableColumnMapper;
 /**
  * 业务字段 服务层实现
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @Service
 public class GenTableColumnServiceImpl implements IGenTableColumnService 

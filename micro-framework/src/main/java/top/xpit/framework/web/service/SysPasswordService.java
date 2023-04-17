@@ -20,7 +20,7 @@ import top.xpit.framework.security.context.AuthenticationContextHolder;
 /**
  * 登录密码方法
  * 
- * @author ruoyi
+ * @author PTJ
  */
 @Component
 public class SysPasswordService

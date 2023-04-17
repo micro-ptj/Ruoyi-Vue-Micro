@@ -3,7 +3,7 @@ package top.xpit.common.exception;
 /**
  * 演示模式异常
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class DemoModeException extends RuntimeException
 {

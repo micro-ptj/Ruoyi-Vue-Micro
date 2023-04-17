@@ -3,7 +3,7 @@ package top.xpit.common.enums;
 /**
  * 限流类型
  *
- * @author ruoyi
+ * @author PTJ
  */
 
 public enum LimitType

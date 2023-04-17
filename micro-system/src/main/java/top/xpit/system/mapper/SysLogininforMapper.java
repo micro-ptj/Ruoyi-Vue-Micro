@@ -6,7 +6,7 @@ import top.xpit.system.domain.SysLogininfor;
 /**
  * 系统访问日志情况信息 数据层
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public interface SysLogininforMapper
 {

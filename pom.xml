@@ -6,14 +6,14 @@
 	
     <groupId>top.xpit</groupId>
     <artifactId>micro</artifactId>
-    <version>3.8.5</version>
+    <version>1.0.0</version>
 
     <name>micro</name>
-    <url>http://www.ruoyi.vip</url>
+    <url>http://micro.xpit.top</url>
     <description>后台管理系统</description>
     
     <properties>
-        <micro.version>3.8.5</micro.version>
+        <micro.version>1.0.0</micro.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>

@@ -5,7 +5,7 @@ import top.xpit.common.utils.StringUtils;
 /**
  * 缓存信息
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class SysCache
 {

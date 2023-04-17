@@ -6,7 +6,7 @@ import top.xpit.common.core.domain.entity.SysRole;
 /**
  * 角色表 数据层
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public interface SysRoleMapper
 {

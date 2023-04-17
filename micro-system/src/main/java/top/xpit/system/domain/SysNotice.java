@@ -10,7 +10,7 @@ import top.xpit.common.xss.Xss;
 /**
  * 通知公告表 sys_notice
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class SysNotice extends BaseEntity
 {

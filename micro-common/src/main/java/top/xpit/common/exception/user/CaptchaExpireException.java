@@ -3,7 +3,7 @@ package top.xpit.common.exception.user;
 /**
  * 验证码失效异常类
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class CaptchaExpireException extends UserException
 {

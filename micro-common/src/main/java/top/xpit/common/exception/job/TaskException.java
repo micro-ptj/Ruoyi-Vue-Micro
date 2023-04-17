@@ -3,7 +3,7 @@ package top.xpit.common.exception.job;
 /**
  * 计划策略异常
  * 
- * @author ruoyi
+ * @author PTJ
  */
 public class TaskException extends Exception
 {

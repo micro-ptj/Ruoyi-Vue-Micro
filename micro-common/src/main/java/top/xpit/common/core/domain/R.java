@@ -6,7 +6,7 @@ import top.xpit.common.constant.HttpStatus;
 /**
  * 响应信息主体
  *
- * @author ruoyi
+ * @author PTJ
  */
 public class R<T> implements Serializable
 {
