@@ -71,7 +71,7 @@ public class EscrowServiceImpl implements EscrowService {
         BigInteger amount = Convert.toWei(weiValue, Convert.Unit.ETHER).toBigInteger();
         TransactionReceipt send = null;
         try {
-            send = systemEscrow(id).bid(amount).send();
+            send = appEscrow(id, microBid.getUserId()).bid(amount).send();
             log.debug(send.toString());
         } catch (Exception e) {
             throw new RuntimeException(e);
