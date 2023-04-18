@@ -35,7 +35,9 @@ public class GethTask {
      * 查询用户余额
      */
     public void queryBalance() {
+        log.debug("task is start");
         gethService.balance();
+        log.debug("task is end");
     }
 
     /**
