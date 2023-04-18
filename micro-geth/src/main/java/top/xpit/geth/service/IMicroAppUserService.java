@@ -3,6 +3,7 @@ package top.xpit.geth.service;
 import java.util.List;
 
 import top.xpit.geth.domain.MicroAppUser;
+import top.xpit.geth.domain.query.AppIdentityVerifyParam;
 import top.xpit.geth.domain.vo.UserInfoVo;
 
 /**
@@ -62,4 +63,6 @@ public interface IMicroAppUserService
     public int deleteMicroAppUserById(Long id);
 
     UserInfoVo selectUserInfo();
+
+    boolean identityVerify(AppIdentityVerifyParam param);
 }

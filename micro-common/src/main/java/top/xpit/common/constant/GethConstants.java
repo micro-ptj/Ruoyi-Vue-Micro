@@ -6,11 +6,6 @@ package top.xpit.common.constant;
  * @Description: 系统变量
  */
 public class GethConstants {
-
-    /**
-     * redis key
-     */
-    public static final String REDIS_KEY = "micro:";
     /**
      * Geth
      */
@@ -25,4 +20,8 @@ public class GethConstants {
     public static final String EXPRESS_APPCODE = "d6cb28dfab5c4e8fb521144833327251";
     /* -------------------------END-------------------------------- */
 
+    /* -------------------------实名认证------------------------------- */
+    public static final String VERIFY_APP_CODE = "d6cb28dfab5c4e8fb521144833327251";
+    public static final String VERIFY_URL = "https://transfer3.market.alicloudapi.com/mobile_three/transfer";
+    /* -------------------------END-------------------------------- */
 }

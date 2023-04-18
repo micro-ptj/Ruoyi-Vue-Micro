@@ -51,8 +51,12 @@ public class AuctionServiceImpl implements AuctionService {
         BigDecimal bigDecimal = microBidMapper.selectHighestPrice(param);
         if (amount.compareTo(goods.getStartPrice()) <= 0){
             throw new RuntimeException("出价不能小于拍品价格");
-        } else if (amount.compareTo(bigDecimal) <= 0) {
-            throw new RuntimeException("出价不能小于上次出价");
+        } else if (bigDecimal != null) {
+            if (amount.compareTo(bigDecimal) <= 0) {
+                throw new RuntimeException("出价不能小于上次出价");
+            }else {
+                log.debug("出价有效");
+            }
         }
         MicroBid bids = microBidService.bids(param);
         escrowService.bid(BigInteger.valueOf(param.getGoodsId()), param.getAmount(), bids);

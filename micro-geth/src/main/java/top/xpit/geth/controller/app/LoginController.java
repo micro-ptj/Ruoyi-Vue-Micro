@@ -1,4 +1,4 @@
-package top.xpit.geth.controller;
+package top.xpit.geth.controller.app;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +12,7 @@ import top.xpit.geth.domain.query.AppLoginUserParam;
 import top.xpit.geth.domain.query.AppRegisterUserParam;
 import top.xpit.geth.service.LoginService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
 /**
@@ -33,8 +34,8 @@ public class LoginController extends BaseController {
     private AppLoginService loginService;
 
     @PostMapping("login")
-    public AjaxResult login(@RequestBody AppLoginUserParam param) {
-        String token = appLoginService.login(param);
+    public AjaxResult login(@RequestBody AppLoginUserParam param, HttpServletRequest request) {
+        String token = appLoginService.login(param, request);
         HashMap<String, Object> map = new HashMap<>();
         map.put("token", token);
         return success(map);
@@ -58,8 +59,13 @@ public class LoginController extends BaseController {
     }
 
     @PostMapping("register")
-    public AjaxResult register(@RequestBody AppRegisterUserParam param){
-        boolean a = appLoginService.register(param);
-        return success(a);
+    public AjaxResult register(@RequestBody AppRegisterUserParam param, HttpServletRequest request){
+        int i = appLoginService.register(param, request);
+        return toAjax(i);
+    }
+
+    @GetMapping(value = "code", name = "验证码发送")
+    public AjaxResult code(Long phone, String type, HttpServletRequest request){
+        return success(appLoginService.code(phone, type, request));
     }
 }

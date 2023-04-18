@@ -104,7 +104,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="phone != null">phone,</if>
             <if test="password != null">password,</if>
             <if test="activate != null">activate,</if>
-            <if test="name != null">name,</if>
+            <if test="name != null">`name`,</if>
             <if test="sex != null">sex,</if>
             <if test="idCardNo != null">id_card_no,</if>
             <if test="address != null">address,</if>

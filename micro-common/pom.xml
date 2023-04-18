@@ -131,6 +131,11 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>top.xpit</groupId>
+            <artifactId>micro-sms</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

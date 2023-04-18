@@ -1,7 +1,9 @@
 package top.xpit.geth.service.impl;
 
+import java.io.IOException;
 import java.util.List;
 
+import com.alibaba.fastjson2.JSONObject;
 import top.xpit.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,10 +13,12 @@ import top.xpit.common.utils.SecurityUtils;
 import top.xpit.common.utils.StringUtils;
 import org.springframework.transaction.annotation.Transactional;
 import top.xpit.geth.domain.MicroUserInfo;
+import top.xpit.geth.domain.query.AppIdentityVerifyParam;
 import top.xpit.geth.domain.vo.UserInfoVo;
 import top.xpit.geth.mapper.MicroAppUserMapper;
 import top.xpit.geth.domain.MicroAppUser;
 import top.xpit.geth.service.IMicroAppUserService;
+import top.xpit.geth.util.VerifyIdentityUtil;
 
 /**
  * 用户管理Service业务层处理
@@ -140,6 +144,36 @@ public class MicroAppUserServiceImpl implements IMicroAppUserService
             {
                 microAppUserMapper.batchMicroUserInfo(list);
             }
+        }
+    }
+
+    /**
+     * 实名认证
+     * @param param
+     * @return
+     */
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public boolean identityVerify(AppIdentityVerifyParam param) {
+        MicroAppUser appUser = new MicroAppUser();
+        try {
+            String verify = VerifyIdentityUtil.verify(param);
+            JSONObject jsonObject = JSONObject.parseObject(verify);
+            if ("0".equals(jsonObject.get("result").toString())){
+                appUser.setId(SecurityUtils.getAppUserId());
+                appUser.setIdCardNo(jsonObject.get("order_no").toString());
+                appUser.setSex("女".equals(jsonObject.get("sex").toString()) ? 1L : 0L);
+                appUser.setAddress(jsonObject.get("address").toString());
+                appUser.setUpdateTime(DateUtils.getNowDate());
+                appUser.setUpdateBy(SecurityUtils.getAppUserId().toString());
+                //更新用户数据
+                microAppUserMapper.updateMicroAppUser(appUser);
+                return true;
+            }else {
+                return false;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

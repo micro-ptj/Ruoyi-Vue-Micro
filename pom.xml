@@ -32,6 +32,7 @@
         <jwt.version>0.9.1</jwt.version>
         <web3j.version>4.5.0</web3j.version>
         <web3j-spring-boot.version>1.6.0</web3j-spring-boot.version>
+        <tenclent-sms.version>3.1.689</tenclent-sms.version>
     </properties>
 	
     <!-- 依赖声明 -->
@@ -148,6 +149,12 @@
                 <version>${kaptcha.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.tencentcloudapi</groupId>
+                <artifactId>tencentcloud-sdk-java</artifactId>
+                <version>${tenclent-sms.version}</version>
+            </dependency>
+
             <!-- 定时任务-->
             <dependency>
                 <groupId>top.xpit</groupId>
@@ -188,6 +195,12 @@
                 <artifactId>micro-geth</artifactId>
                 <version>${micro.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>top.xpit</groupId>
+                <artifactId>micro-sms</artifactId>
+                <version>${micro.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -199,6 +212,7 @@
         <module>micro-generator</module>
         <module>micro-common</module>
         <module>micro-geth</module>
+        <module>micro-sms</module>
     </modules>
     <packaging>pom</packaging>
 
