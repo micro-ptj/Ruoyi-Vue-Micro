@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import top.xpit.geth.domain.MicroGoods;
 import top.xpit.geth.mapper.MicroGoodsMapper;
 import top.xpit.geth.service.AuctionService;
+import top.xpit.geth.service.GethService;
 import top.xpit.geth.service.IMicroGoodsService;
 
 import java.math.BigInteger;
@@ -24,8 +25,17 @@ public class GethTask {
 
     private final AuctionService auctionService;
 
+    private final GethService gethService;
+
     public void test() {
         System.out.println("------------------------------>task is start");
+    }
+
+    /**
+     * 查询用户余额
+     */
+    public void queryBalance() {
+        gethService.balance();
     }
 
     /**

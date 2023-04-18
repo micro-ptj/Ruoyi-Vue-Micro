@@ -106,8 +106,8 @@ public class GethServiceImpl implements GethService {
      */
     @Override
     public BigDecimal balance() {
-        Long userId = SecurityUtils.getAppUserId();
-        MicroUserInfo userInfo = microUserInfoMapper.selectByUserId(userId);
+
+        MicroUserInfo userInfo = microUserInfoMapper.selectByUserId(1221L);
         EthGetBalance ethGetBalance = null;
         try {
             ethGetBalance = web3j.ethGetBalance(userInfo.getAddress(), DefaultBlockParameterName.LATEST).send();

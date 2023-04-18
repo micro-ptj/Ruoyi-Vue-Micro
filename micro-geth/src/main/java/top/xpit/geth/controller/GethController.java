@@ -45,6 +45,7 @@ public class GethController extends BaseController {
 
     @GetMapping("balance")
     public AjaxResult balance(){
-        return success(gethService.balance());
+//        return success(gethService.balance());
+        return success();
     }
 }
