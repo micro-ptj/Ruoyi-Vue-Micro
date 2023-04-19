@@ -11,6 +11,6 @@ import lombok.Data;
 public class AppIdentityVerifyParam {
     private Long userId;
     private String name;
-    private String idCode;
+    private String idCard;
     private String phone;
 }

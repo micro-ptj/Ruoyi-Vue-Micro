@@ -27,7 +27,7 @@ public class VerifyIdentityUtil {
         String appCode = GethConstants.VERIFY_APP_CODE;
 
         Map<String, String> params = new HashMap<>();
-        params.put("idcard", param.getIdCode());
+        params.put("idcard", param.getIdCard());
         params.put("name", param.getName());
         params.put("mobile", param.getPhone());
 

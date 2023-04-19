@@ -158,12 +158,13 @@ public class MicroAppUserServiceImpl implements IMicroAppUserService
         MicroAppUser appUser = new MicroAppUser();
         try {
             String verify = VerifyIdentityUtil.verify(param);
-            JSONObject jsonObject = JSONObject.parseObject(verify);
+            JSONObject baseJson = JSONObject.parseObject(verify);
+            JSONObject jsonObject = baseJson.getJSONObject("data");
             if ("0".equals(jsonObject.get("result").toString())){
                 appUser.setId(SecurityUtils.getAppUserId());
-                appUser.setIdCardNo(jsonObject.get("order_no").toString());
-                appUser.setSex("女".equals(jsonObject.get("sex").toString()) ? 1L : 0L);
-                appUser.setAddress(jsonObject.get("address").toString());
+                appUser.setIdCardNo(jsonObject.getString("order_no"));
+                appUser.setSex("女".equals(jsonObject.getString("sex")) ? 1L : 0L);
+                appUser.setAddress(jsonObject.getString("address"));
                 appUser.setUpdateTime(DateUtils.getNowDate());
                 appUser.setUpdateBy(SecurityUtils.getAppUserId().toString());
                 //更新用户数据
