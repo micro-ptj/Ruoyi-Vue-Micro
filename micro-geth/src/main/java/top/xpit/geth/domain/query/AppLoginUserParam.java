@@ -14,5 +14,5 @@ public class AppLoginUserParam {
 
     private String password;
 
-    private Long code;
+    private String code;
 }

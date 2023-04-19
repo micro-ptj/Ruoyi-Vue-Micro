@@ -12,7 +12,6 @@ import top.xpit.geth.domain.query.AppLoginUserParam;
 import top.xpit.geth.domain.query.AppRegisterUserParam;
 import top.xpit.geth.service.LoginService;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
 /**

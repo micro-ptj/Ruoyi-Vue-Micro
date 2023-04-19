@@ -16,5 +16,5 @@ public class AppRegisterUserParam {
 
     private String avatar;
 
-    private Long code;
+    private String code;
 }
