@@ -151,7 +151,7 @@ public class LoginServiceImpl implements LoginService {
         }
         //检测手机号是否存在
         MicroAppUser appUser = microAppUserMapper.selectByPhone(phone);
-        if (Objects.nonNull(appUser)){
+        if (Objects.isNull(appUser)){
             throw new RuntimeException("手机号不存在");
         }else {
             String code = String.valueOf(Math.round((Math.random() + 1) * 1000));
