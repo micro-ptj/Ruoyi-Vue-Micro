@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface LoginService {
 
-    String login(AppLoginUserParam param, HttpServletRequest request);
+    String login(AppLoginUserParam param);
 
-    int register(AppRegisterUserParam param, HttpServletRequest request);
+    int register(AppRegisterUserParam param);
 
-    boolean code(Long phone, String type, HttpServletRequest request);
+    boolean code(Long phone, String type);
 }

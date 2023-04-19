@@ -34,8 +34,8 @@ public class LoginController extends BaseController {
     private AppLoginService loginService;
 
     @PostMapping("login")
-    public AjaxResult login(@RequestBody AppLoginUserParam param, HttpServletRequest request) {
-        String token = appLoginService.login(param, request);
+    public AjaxResult login(@RequestBody AppLoginUserParam param) {
+        String token = appLoginService.login(param);
         HashMap<String, Object> map = new HashMap<>();
         map.put("token", token);
         return success(map);
@@ -59,13 +59,13 @@ public class LoginController extends BaseController {
     }
 
     @PostMapping("register")
-    public AjaxResult register(@RequestBody AppRegisterUserParam param, HttpServletRequest request){
-        int i = appLoginService.register(param, request);
+    public AjaxResult register(@RequestBody AppRegisterUserParam param){
+        int i = appLoginService.register(param);
         return toAjax(i);
     }
 
     @GetMapping(value = "code", name = "验证码发送")
-    public AjaxResult code(Long phone, String type, HttpServletRequest request){
-        return success(appLoginService.code(phone, type, request));
+    public AjaxResult code(Long phone, String type){
+        return success(appLoginService.code(phone, type));
     }
 }

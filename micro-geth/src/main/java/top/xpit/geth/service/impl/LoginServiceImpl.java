@@ -6,7 +6,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.web3j.crypto.CipherException;
+import top.xpit.common.constant.Constants;
+import top.xpit.common.constant.RedisConstants;
 import top.xpit.common.core.domain.model.AppLoginUser;
+import top.xpit.common.core.redis.RedisCache;
 import top.xpit.common.exception.user.UserNotExistsException;
 import top.xpit.common.exception.user.UserPasswordNotMatchException;
 import top.xpit.framework.web.service.AppLoginService;
@@ -28,6 +31,7 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author: PTJ
@@ -47,8 +51,10 @@ public class LoginServiceImpl implements LoginService {
 
     private final GethService gethService;
 
+    private final RedisCache redisCache;
+
     @Override
-    public String login(AppLoginUserParam param, HttpServletRequest request) {
+    public String login(AppLoginUserParam param) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         if (Objects.isNull(param)){
             throw new NullPointerException("用户名密码不能为空");
@@ -64,8 +70,9 @@ public class LoginServiceImpl implements LoginService {
                     throw new UserPasswordNotMatchException();
                 }
             }else {
-                HttpSession session = request.getSession();
-                String code = (String) session.getAttribute("code.login");
+                String verifyKey = RedisConstants.LOGIN_CODE + param.getPhone();
+                String code = redisCache.getCacheObject(verifyKey);
+                redisCache.deleteObject(verifyKey);
                 if (param.getCode().equals(code)){
                     return loginToken(appUser);
                 }else {
@@ -93,12 +100,12 @@ public class LoginServiceImpl implements LoginService {
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int register(AppRegisterUserParam param, HttpServletRequest request) {
+    public int register(AppRegisterUserParam param) {
         MicroAppUser appUser1 = microAppUserMapper.selectByPhone(param.getPhone());
         if (Objects.nonNull(appUser1)){
             throw new RuntimeException("手机号已经存在");
         }
-        HttpSession session = request.getSession();
+        String verifyKey = RedisConstants.REGISTER_CODE + param.getPhone();
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         if (Objects.isNull(param)){
@@ -108,7 +115,8 @@ public class LoginServiceImpl implements LoginService {
         } else if (param.getCode() == null) {
             throw new RuntimeException("请输入验证码");
         }else {
-            String code = (String) session.getAttribute("code.register");
+            String code = redisCache.getCacheObject(verifyKey);
+            redisCache.deleteObject(verifyKey);
             if (code == null){
                 throw new RuntimeException("验证码失效");
             } else if (!code.equals(param.getCode())){
@@ -143,7 +151,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public boolean code(Long phone, String type, HttpServletRequest request) {
+    public boolean code(Long phone, String type) {
         //校验数据
         boolean phoneLegal = PhoneCheckUtils.isPhoneLegal(phone);
         if (!phoneLegal){
@@ -155,8 +163,8 @@ public class LoginServiceImpl implements LoginService {
             throw new RuntimeException("手机号不存在");
         }else {
             String code = String.valueOf(Math.round((Math.random() + 1) * 1000));
-            HttpSession session = request.getSession();
-            session.setAttribute("code." + type, code);
+            String verifyKey = RedisConstants.BASE_CODE + type + ":" + phone;
+            redisCache.setCacheObject(verifyKey, code, Constants.CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
             String send = SendSms.send(phone, code);
             log.debug(send);
             return true;
