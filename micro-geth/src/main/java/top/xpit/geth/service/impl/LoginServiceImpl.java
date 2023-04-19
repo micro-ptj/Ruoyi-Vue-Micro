@@ -146,7 +146,7 @@ public class LoginServiceImpl implements LoginService {
     public boolean code(Long phone, String type, HttpServletRequest request) {
         //校验数据
         boolean phoneLegal = PhoneCheckUtils.isPhoneLegal(phone);
-        if (phoneLegal){
+        if (!phoneLegal){
             throw new RuntimeException("手机号码格式错误");
         }
         //检测手机号是否存在

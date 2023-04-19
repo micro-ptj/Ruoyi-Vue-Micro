@@ -25,4 +25,9 @@ public class PhoneCheckUtils {
         boolean isMatch = m.matches();
         return isMatch;
     }
+
+    public static void main(String[] args) {
+        boolean phoneLegal = isPhoneLegal(15391493308L);
+        System.out.println(phoneLegal);
+    }
 }
