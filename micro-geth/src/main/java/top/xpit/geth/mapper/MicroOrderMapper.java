@@ -3,6 +3,7 @@ package top.xpit.geth.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import top.xpit.geth.domain.MicroOrder;
 import top.xpit.geth.domain.query.AppOrderQueryParam;
 import top.xpit.geth.domain.vo.OrderVo;
@@ -66,5 +67,5 @@ public interface MicroOrderMapper
 
     List<OrderVo> selectAppOrderList(AppOrderQueryParam param);
 
-    int selectByTask(long userId, long longValue);
+    int selectByTask(@Param("userId") long userId, @Param("goodsId") long goodsId);
 }
