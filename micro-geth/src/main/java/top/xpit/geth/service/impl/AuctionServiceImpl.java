@@ -82,8 +82,10 @@ public class AuctionServiceImpl implements AuctionService {
         OrderDto orderDto = goodsStoreService.winnerBidder(goodsId);
         //根据地址查询用户id
         Long userId = microUserInfoMapper.selectByAddress(orderDto.getAddress());
+        log.debug("用户id为----------------------->" + userId.toString());
         //查询订单是否添加过 每个用户对应一个商品订单
         int i = microOrderMapper.selectByTask(userId, goodsId.longValue());
+        log.debug(i == 0 ? "未生成订单" : "已生成订单");
         if (i == 0){
             orderDto.setUserId(userId);
             orderDto.setGoodsId(goodsId.longValue());
