@@ -66,5 +66,5 @@ public interface MicroOrderMapper
 
     List<OrderVo> selectAppOrderList(AppOrderQueryParam param);
 
-    int selectByTask(Long userId, long longValue);
+    int selectByTask(long userId, long longValue);
 }
