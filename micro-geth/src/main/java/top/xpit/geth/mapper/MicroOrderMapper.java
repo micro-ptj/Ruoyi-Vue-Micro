@@ -68,4 +68,6 @@ public interface MicroOrderMapper
     List<OrderVo> selectAppOrderList(AppOrderQueryParam param);
 
     int selectByTask(@Param("userId") long userId, @Param("goodsId") long goodsId);
+
+    List<MicroOrder> selectMicroOrderVoList(MicroOrder microOrder);
 }

@@ -100,4 +100,9 @@ public class MicroOrderServiceImpl implements IMicroOrderService
     public List<OrderVo> selectAppOrderList(AppOrderQueryParam param) {
         return microOrderMapper.selectAppOrderList(param);
     }
+
+    @Override
+    public List<MicroOrder> selectMicroOrderVoList(MicroOrder microOrder) {
+        return microOrderMapper.selectMicroOrderVoList(microOrder);
+    }
 }

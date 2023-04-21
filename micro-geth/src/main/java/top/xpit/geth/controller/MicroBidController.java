@@ -16,7 +16,9 @@ import top.xpit.common.annotation.Log;
 import top.xpit.common.core.controller.BaseController;
 import top.xpit.common.core.domain.AjaxResult;
 import top.xpit.common.enums.BusinessType;
+import top.xpit.common.utils.PageUtils;
 import top.xpit.geth.domain.MicroBid;
+import top.xpit.geth.domain.vo.MicroBidVo;
 import top.xpit.geth.service.IMicroBidService;
 import top.xpit.common.utils.poi.ExcelUtil;
 import top.xpit.common.core.page.TableDataInfo;
@@ -42,7 +44,7 @@ public class MicroBidController extends BaseController
     public TableDataInfo list(MicroBid microBid)
     {
         startPage();
-        List<MicroBid> list = microBidService.selectMicroBidList(microBid);
+        List<MicroBidVo> list = microBidService.selectMicroBidVoList(microBid);
         return getDataTable(list);
     }
 

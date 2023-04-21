@@ -9,14 +9,6 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="商品ID" prop="goodsId">
-        <el-input
-          v-model="queryParams.goodsId"
-          placeholder="请输入商品ID"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
       <el-form-item label="出价" prop="amount">
         <el-input
           v-model="queryParams.amount"
@@ -89,9 +81,10 @@
 
     <el-table v-loading="loading" :data="bidList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="唯一标识" align="center" prop="id" />
       <el-table-column label="用户ID" align="center" prop="userId" />
-      <el-table-column label="商品ID" align="center" prop="goodsId" />
+      <el-table-column label="姓名" align="center" prop="userName" />
+      <el-table-column label="电话" align="center" prop="phone" />
+      <el-table-column label="商品名称" align="center" prop="goodsName" />
       <el-table-column label="出价" align="center" prop="amount" />
       <el-table-column label="竞拍状态" align="center" prop="status">
         <template slot-scope="scope">

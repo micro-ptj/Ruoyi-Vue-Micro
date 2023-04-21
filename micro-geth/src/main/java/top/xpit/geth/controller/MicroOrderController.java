@@ -42,7 +42,7 @@ public class MicroOrderController extends BaseController
     public TableDataInfo list(MicroOrder microOrder)
     {
         startPage();
-        List<MicroOrder> list = microOrderService.selectMicroOrderList(microOrder);
+        List<MicroOrder> list = microOrderService.selectMicroOrderVoList(microOrder);
         return getDataTable(list);
     }
 

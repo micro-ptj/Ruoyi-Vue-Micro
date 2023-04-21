@@ -19,6 +19,24 @@
         <result property="delFlag"    column="del_flag"    />
     </resultMap>
 
+    <resultMap type="MicroOrderVo" id="MicroOrderVoResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="goodsId"    column="goods_id"    />
+        <result property="amount"    column="amount"    />
+        <result property="status"    column="status"    />
+        <result property="orderTime"    column="order_time"    />
+        <result property="trackingNum"    column="tracking_num"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="delFlag"    column="del_flag"    />
+        <result property="goodsName"    column="goods_name"    />
+        <result property="userName"    column="user_name"    />
+        <result property="phone"    column="phone"    />
+    </resultMap>
+
     <resultMap type="OrderVo" id="OrderVoResult">
         <result property="id"    column="id"    />
         <result property="name"    column="name"    />
@@ -76,6 +94,23 @@
         WHERE user_id = #{userId}
           AND goods_id = #{goodsId}
           AND del_flag = 0
+    </select>
+
+    <select id="selectMicroOrderVoList" resultMap="MicroOrderVoResult">
+        SELECT
+        mo.*, mg.`name` AS goods_name, mau.`name` AS user_name
+        FROM
+        micro_order mo
+        LEFT JOIN micro_goods mg ON mg.id = mo.goods_id
+        LEFT JOIN micro_app_user mau ON mau.id = mo.user_id
+        <where>
+            <if test="userId != null "> and mo.user_id = #{userId}</if>
+            <if test="goodsId != null "> and mo.goods_id = #{goodsId}</if>
+            <if test="amount != null "> and mo.amount = #{amount}</if>
+            <if test="status != null "> and mo.tatus = #{status}</if>
+            <if test="orderTime != null "> and mo.order_time = #{orderTime}</if>
+            <if test="trackingNum != null  and trackingNum != ''"> and mo.tracking_num = #{trackingNum}</if>
+        </where>
     </select>
 
     <insert id="insertMicroOrder" parameterType="MicroOrder" useGeneratedKeys="true" keyProperty="id">

@@ -62,4 +62,6 @@ public interface IMicroOrderService
     public int deleteMicroOrderById(Long id);
 
     List<OrderVo> selectAppOrderList(AppOrderQueryParam param);
+
+    List<MicroOrder> selectMicroOrderVoList(MicroOrder microOrder);
 }

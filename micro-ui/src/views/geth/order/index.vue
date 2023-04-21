@@ -9,22 +9,6 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="商品id" prop="goodsId">
-        <el-input
-          v-model="queryParams.goodsId"
-          placeholder="请输入商品id"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="支付价格" prop="amount">
-        <el-input
-          v-model="queryParams.amount"
-          placeholder="请输入支付价格"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
       <el-form-item label="订单状态" prop="status">
         <el-select v-model="queryParams.status" placeholder="请选择订单状态" clearable>
           <el-option
@@ -105,9 +89,10 @@
 
     <el-table v-loading="loading" :data="orderList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="唯一标识" align="center" prop="id" />
       <el-table-column label="用户id" align="center" prop="userId" />
-      <el-table-column label="商品id" align="center" prop="goodsId" />
+      <el-table-column label="姓名" align="center" prop="userName" />
+      <el-table-column label="电话" align="center" prop="phone" />
+      <el-table-column label="商品名称" align="center" prop="goodsName" />
       <el-table-column label="支付价格" align="center" prop="amount" />
       <el-table-column label="订单状态" align="center" prop="status">
         <template slot-scope="scope">

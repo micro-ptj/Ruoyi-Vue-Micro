@@ -7,6 +7,7 @@ import top.xpit.geth.domain.dto.OrderDto;
 import top.xpit.geth.domain.query.AppBidParam;
 import top.xpit.geth.domain.query.AppBidQueryParam;
 import top.xpit.geth.domain.vo.BidVo;
+import top.xpit.geth.domain.vo.MicroBidVo;
 
 /**
  * 交易信息Mapper接口
@@ -73,4 +74,6 @@ public interface MicroBidMapper
     List<Long> selectWithdraw(long goodsId);
 
     BigDecimal selectHighestPrice(AppBidParam param);
+
+    List<MicroBidVo> selectMicroBidVoList(MicroBid microBid);
 }

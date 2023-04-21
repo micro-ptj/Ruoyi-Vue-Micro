@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import top.xpit.geth.domain.query.AppBidParam;
 import top.xpit.geth.domain.query.AppBidQueryParam;
 import top.xpit.geth.domain.vo.BidVo;
+import top.xpit.geth.domain.vo.MicroBidVo;
 import top.xpit.geth.mapper.MicroBidMapper;
 import top.xpit.geth.domain.MicroBid;
 import top.xpit.geth.service.IMicroBidService;
@@ -119,5 +120,10 @@ public class MicroBidServiceImpl implements IMicroBidService
         this.insertMicroBid(microBid);
         System.out.println(microBid);
         return microBid;
+    }
+
+    @Override
+    public List<MicroBidVo> selectMicroBidVoList(MicroBid microBid) {
+        return microBidMapper.selectMicroBidVoList(microBid);
     }
 }
