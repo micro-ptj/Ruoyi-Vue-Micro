@@ -102,7 +102,7 @@
 
     <select id="selectMicroBidVoList" resultMap="MicroBidVoResult">
         SELECT
-        mb.*, mg.`name` AS goods_name, mau.`name` AS user_name
+        mb.*, mg.`name` AS goods_name, mau.`name` AS user_name, mau.phone
         FROM
         micro_bid mb
         LEFT JOIN micro_goods mg ON mg.id = mb.goods_id
