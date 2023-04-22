@@ -2,6 +2,8 @@ package top.xpit.geth.mapper;
 
 import java.util.List;
 import top.xpit.geth.domain.MicroTransaction;
+import top.xpit.geth.domain.query.TransactionQueryParam;
+import top.xpit.geth.domain.vo.TransactionVo;
 
 /**
  * 区块链交易数据Mapper接口
@@ -58,4 +60,6 @@ public interface MicroTransactionMapper
      * @return 结果
      */
     public int deleteMicroTransactionByIds(Long[] ids);
+
+    TransactionVo selectBySourceId(TransactionQueryParam param);
 }

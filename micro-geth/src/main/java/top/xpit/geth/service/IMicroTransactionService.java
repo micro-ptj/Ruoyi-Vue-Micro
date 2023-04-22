@@ -2,6 +2,8 @@ package top.xpit.geth.service;
 
 import java.util.List;
 import top.xpit.geth.domain.MicroTransaction;
+import top.xpit.geth.domain.query.TransactionQueryParam;
+import top.xpit.geth.domain.vo.TransactionVo;
 
 /**
  * 区块链交易数据Service接口
@@ -58,4 +60,6 @@ public interface IMicroTransactionService
      * @return 结果
      */
     public int deleteMicroTransactionById(Long id);
+
+    TransactionVo selectBySourceId(TransactionQueryParam param);
 }

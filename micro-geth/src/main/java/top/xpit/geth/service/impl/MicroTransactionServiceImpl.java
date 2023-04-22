@@ -4,6 +4,8 @@ import java.util.List;
 import top.xpit.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.xpit.geth.domain.query.TransactionQueryParam;
+import top.xpit.geth.domain.vo.TransactionVo;
 import top.xpit.geth.mapper.MicroTransactionMapper;
 import top.xpit.geth.domain.MicroTransaction;
 import top.xpit.geth.service.IMicroTransactionService;
@@ -92,5 +94,11 @@ public class MicroTransactionServiceImpl implements IMicroTransactionService
     public int deleteMicroTransactionById(Long id)
     {
         return microTransactionMapper.deleteMicroTransactionById(id);
+    }
+
+    @Override
+    public TransactionVo selectBySourceId(TransactionQueryParam param) {
+        TransactionVo transactionVo = microTransactionMapper.selectBySourceId(param);
+        return transactionVo;
     }
 }
