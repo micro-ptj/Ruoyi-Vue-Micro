@@ -23,7 +23,7 @@ public class TransactionController extends BaseController {
 
     private final IMicroTransactionService transactionService;
 
-    @PostMapping("info/{id}")
+    @PostMapping("info")
     public AjaxResult info(@Valid @RequestBody TransactionQueryParam param) {
         TransactionVo transactionVo = transactionService.selectBySourceId(param);
         return success(transactionVo);

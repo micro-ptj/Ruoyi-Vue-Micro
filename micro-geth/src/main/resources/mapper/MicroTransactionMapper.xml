@@ -65,6 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE
             source_id = #{sourceId}
           AND source_type = #{sourceType}
+        LIMIT 1
     </select>
 
     <insert id="insertMicroTransaction" parameterType="MicroTransaction" useGeneratedKeys="true" keyProperty="id">
