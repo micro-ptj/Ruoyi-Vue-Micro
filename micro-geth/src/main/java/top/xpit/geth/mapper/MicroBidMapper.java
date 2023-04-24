@@ -2,11 +2,14 @@ package top.xpit.geth.mapper;
 
 import java.math.BigDecimal;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import top.xpit.geth.domain.MicroBid;
 import top.xpit.geth.domain.dto.OrderDto;
 import top.xpit.geth.domain.query.AppBidParam;
 import top.xpit.geth.domain.query.AppBidQueryParam;
 import top.xpit.geth.domain.vo.BidVo;
+import top.xpit.geth.domain.vo.ContentInfoVo;
 import top.xpit.geth.domain.vo.MicroBidVo;
 
 /**
@@ -76,4 +79,6 @@ public interface MicroBidMapper
     BigDecimal selectHighestPrice(AppBidParam param);
 
     List<MicroBidVo> selectMicroBidVoList(MicroBid microBid);
+
+    ContentInfoVo selectAppBidById(@Param("id") Long id, @Param("userId") Long userId);
 }

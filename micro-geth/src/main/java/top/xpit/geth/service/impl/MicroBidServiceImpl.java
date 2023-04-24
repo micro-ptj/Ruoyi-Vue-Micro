@@ -5,9 +5,11 @@ import java.util.List;
 import top.xpit.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.xpit.common.utils.SecurityUtils;
 import top.xpit.geth.domain.query.AppBidParam;
 import top.xpit.geth.domain.query.AppBidQueryParam;
 import top.xpit.geth.domain.vo.BidVo;
+import top.xpit.geth.domain.vo.ContentInfoVo;
 import top.xpit.geth.domain.vo.MicroBidVo;
 import top.xpit.geth.mapper.MicroBidMapper;
 import top.xpit.geth.domain.MicroBid;
@@ -125,5 +127,10 @@ public class MicroBidServiceImpl implements IMicroBidService
     @Override
     public List<MicroBidVo> selectMicroBidVoList(MicroBid microBid) {
         return microBidMapper.selectMicroBidVoList(microBid);
+    }
+
+    @Override
+    public ContentInfoVo selectAppBidById(Long id) {
+        return microBidMapper.selectAppBidById(id, SecurityUtils.getAppUserId());
     }
 }

@@ -5,6 +5,7 @@ import top.xpit.geth.domain.MicroBid;
 import top.xpit.geth.domain.query.AppBidParam;
 import top.xpit.geth.domain.query.AppBidQueryParam;
 import top.xpit.geth.domain.vo.BidVo;
+import top.xpit.geth.domain.vo.ContentInfoVo;
 import top.xpit.geth.domain.vo.MicroBidVo;
 
 /**
@@ -68,4 +69,6 @@ public interface IMicroBidService
     MicroBid bids(AppBidParam param);
 
     List<MicroBidVo> selectMicroBidVoList(MicroBid microBid);
+
+    ContentInfoVo selectAppBidById(Long id);
 }

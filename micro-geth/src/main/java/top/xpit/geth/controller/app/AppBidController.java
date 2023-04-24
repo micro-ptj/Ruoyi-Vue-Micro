@@ -38,4 +38,9 @@ public class AppBidController extends BaseController {
         boolean b = auctionService.bids(param);
         return success(b);
     }
+
+    @GetMapping("info/{id}")
+    public AjaxResult info(@PathVariable Long id){
+        return success(microBidService.selectAppBidById(id));
+    }
 }

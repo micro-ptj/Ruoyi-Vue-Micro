@@ -2,9 +2,11 @@ package top.xpit.geth.controller.app;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.xpit.common.core.controller.BaseController;
+import top.xpit.common.core.domain.AjaxResult;
 import top.xpit.common.core.page.TableDataInfo;
 import top.xpit.common.utils.SecurityUtils;
 import top.xpit.geth.domain.query.AppOrderQueryParam;
@@ -26,5 +28,10 @@ public class AppOrderController extends BaseController {
         startPage();
         List<OrderVo> list = microOrderService.selectAppOrderList(param);
         return getDataTable(list);
+    }
+
+    @GetMapping("info/{id}")
+    public AjaxResult info(@PathVariable Long id){
+        return success(microOrderService.selectAppOrderById(id));
     }
 }

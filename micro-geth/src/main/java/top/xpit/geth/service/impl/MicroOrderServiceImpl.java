@@ -4,7 +4,9 @@ import java.util.List;
 import top.xpit.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.xpit.common.utils.SecurityUtils;
 import top.xpit.geth.domain.query.AppOrderQueryParam;
+import top.xpit.geth.domain.vo.ContentInfoVo;
 import top.xpit.geth.domain.vo.OrderVo;
 import top.xpit.geth.mapper.MicroOrderMapper;
 import top.xpit.geth.domain.MicroOrder;
@@ -104,5 +106,10 @@ public class MicroOrderServiceImpl implements IMicroOrderService
     @Override
     public List<MicroOrder> selectMicroOrderVoList(MicroOrder microOrder) {
         return microOrderMapper.selectMicroOrderVoList(microOrder);
+    }
+
+    @Override
+    public ContentInfoVo selectAppOrderById(Long id) {
+        return microOrderMapper.selectAppOrderById(id, SecurityUtils.getAppUserId());
     }
 }
