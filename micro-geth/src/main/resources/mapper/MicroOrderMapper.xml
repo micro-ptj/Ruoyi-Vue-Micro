@@ -48,6 +48,18 @@
         <result property="trackingNum"    column="tracking_num"    />
     </resultMap>
 
+    <resultMap id="contentInfo" type="ContentInfoVo">
+        <result property="id"    column="id"    />
+        <result property="amount"    column="amount"    />
+        <result property="status"    column="status"    />
+        <result property="time"    column="time"    />
+        <result property="goodsName"    column="goods_name"    />
+        <result property="image"    column="image_link"   />
+        <result property="category"    column="category"    />
+        <result property="startPrice"    column="start_price"   />
+        <result property="trackingNum"    column="tracking_num"   />
+    </resultMap>
+
     <sql id="selectMicroOrderVo">
         select id, user_id, goods_id, amount, status, order_time, tracking_num, create_time, create_by, update_time, update_by, del_flag from micro_order
     </sql>
@@ -112,7 +124,7 @@
             <if test="trackingNum != null  and trackingNum != ''"> and mo.tracking_num = #{trackingNum}</if>
         </where>
     </select>
-    <select id="selectAppOrderById" resultType="top.xpit.geth.domain.vo.ContentInfoVo">
+    <select id="selectAppOrderById" resultMap="contentInfo">
         SELECT
             mo.id,
             mo.`amount`,
@@ -121,7 +133,6 @@
             mg.name AS goods_name,
             mg.`category`,
             mg.`image_link`,
-            mg.`description`,
             mg.`start_price`,
             mo.`tracking_num`
         FROM

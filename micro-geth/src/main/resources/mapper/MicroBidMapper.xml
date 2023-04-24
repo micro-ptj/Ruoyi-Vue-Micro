@@ -45,6 +45,19 @@
         <result property="status"    column="status"    />
     </resultMap>
 
+    <resultMap id="contentInfo" type="ContentInfoVo">
+        <result property="id"    column="id"    />
+        <result property="amount"    column="amount"    />
+        <result property="status"    column="status"    />
+        <result property="time"    column="time"    />
+        <result property="goodsName"    column="goods_name"    />
+        <result property="image"    column="image_link"   />
+        <result property="category"    column="category"    />
+        <result property="startPrice"    column="start_price"   />
+        <result property="trackingNum"    column="tracking_num"   />
+    </resultMap>
+
+
     <sql id="selectMicroBidVo">
         select id, user_id, goods_id, amount, status, bid_time, create_time, create_by, update_time, update_by, del_flag from micro_bid
     </sql>
@@ -114,7 +127,7 @@
             <if test="status != null "> and mb.status = #{status}</if>
         </where>
     </select>
-    <select id="selectAppBidById" resultType="top.xpit.geth.domain.vo.ContentInfoVo">
+    <select id="selectAppBidById" resultMap="contentInfo">
         SELECT
             mb.id,
             mb.`amount`,
@@ -123,7 +136,6 @@
             mg.`name` AS goods_name,
             mg.`category`,
             mg.`image_link`,
-            mg.`description`,
             mg.`start_price`
         FROM
             micro_bid mb

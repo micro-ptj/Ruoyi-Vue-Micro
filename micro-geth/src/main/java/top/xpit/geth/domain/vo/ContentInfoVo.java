@@ -19,9 +19,9 @@ public class ContentInfoVo implements Serializable {
     private Integer status;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date time;
-    private String name;
+    private String goodsName;
+    private String image;
     private Integer category;
-    private String description;
     private BigDecimal startPrice;
     private String trackingNum;
 }
