@@ -18,12 +18,13 @@ import javax.validation.Valid;
  */
 @Slf4j
 @RequiredArgsConstructor
-@RestController("/app/transaction")
+@RestController
+@RequestMapping("/app/transaction")
 public class TransactionController extends BaseController {
 
     private final IMicroTransactionService transactionService;
 
-    @PostMapping("info")
+    @PostMapping("/info")
     public AjaxResult info(@Valid @RequestBody TransactionQueryParam param) {
         TransactionVo transactionVo = transactionService.selectBySourceId(param);
         return success(transactionVo);
