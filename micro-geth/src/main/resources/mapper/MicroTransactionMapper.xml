@@ -57,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectMicroTransactionVo"/>
         where id = #{id}
     </select>
-    <select id="selectBySourceId" resultType="top.xpit.geth.domain.vo.TransactionVo">
+    <select id="selectBySourceId" resultMap="MicroTransactionResult">
         SELECT
             *
         FROM
