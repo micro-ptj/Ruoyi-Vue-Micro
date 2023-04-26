@@ -60,10 +60,5 @@ public class TransactionVo extends BaseEntity
     /** logs */
     private String logs;
 
-    /** logs_bloom */
-    private String logsBloom;
-
-    /** del_flag */
-    private Long delFlag;
 
 }
