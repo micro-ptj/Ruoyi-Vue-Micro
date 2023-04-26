@@ -18,7 +18,7 @@ import javax.validation.Valid;
  */
 @Slf4j
 @RequiredArgsConstructor
-@RestController("app/transaction")
+@RestController("/app/transaction")
 public class TransactionController extends BaseController {
 
     private final IMicroTransactionService transactionService;

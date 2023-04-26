@@ -32,7 +32,7 @@ public class LoginController extends BaseController {
     @Autowired
     private AppLoginService loginService;
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public AjaxResult login(@RequestBody AppLoginUserParam param) {
         String token = appLoginService.login(param);
         HashMap<String, Object> map = new HashMap<>();
