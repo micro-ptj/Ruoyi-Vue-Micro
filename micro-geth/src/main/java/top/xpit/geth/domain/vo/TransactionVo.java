@@ -11,18 +11,9 @@ import top.xpit.common.core.domain.BaseEntity;
  * @date 2023-03-12
  */
 @Data
-public class TransactionVo extends BaseEntity
+public class TransactionVo
 {
     private static final long serialVersionUID = 1L;
-
-    /** id */
-    private Long id;
-
-    /** source_type */
-    private String sourceType;
-
-    /** source_id */
-    private Long sourceId;
 
     /** transaction_hash */
     private String transactionHash;
@@ -56,9 +47,6 @@ public class TransactionVo extends BaseEntity
 
     /** to */
     private String to;
-
-    /** logs */
-    private String logs;
 
 
 }

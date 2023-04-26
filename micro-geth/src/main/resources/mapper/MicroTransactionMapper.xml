@@ -29,9 +29,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <resultMap type="TransactionVo" id="TransactionVoResult">
-        <result property="id"    column="id"    />
-        <result property="sourceType"    column="source_type"    />
-        <result property="sourceId"    column="source_id"    />
         <result property="transactionHash"    column="transaction_hash"    />
         <result property="transactionIndex"    column="transaction_index"    />
         <result property="blockHash"    column="block_hash"    />
@@ -43,7 +40,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="status"    column="status"    />
         <result property="from"    column="from"    />
         <result property="to"    column="to"    />
-        <result property="logs"    column="logs"    />
     </resultMap>
 
     <sql id="selectMicroTransactionVo">
