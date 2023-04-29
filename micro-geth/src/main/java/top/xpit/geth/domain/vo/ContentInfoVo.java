@@ -23,5 +23,14 @@ public class ContentInfoVo implements Serializable {
     private String image;
     private Integer category;
     private BigDecimal startPrice;
+
+    private Long addressId;
+    private String name;
+    private String phone;
+    private String address;
+
     private String trackingNum;
+
+
+
 }

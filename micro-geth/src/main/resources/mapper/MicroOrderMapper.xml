@@ -11,6 +11,7 @@
         <result property="amount"    column="amount"    />
         <result property="status"    column="status"    />
         <result property="orderTime"    column="order_time"    />
+        <result property="address"    column="address"    />
         <result property="trackingNum"    column="tracking_num"    />
         <result property="createTime"    column="create_time"    />
         <result property="createBy"    column="create_by"    />
@@ -26,6 +27,7 @@
         <result property="amount"    column="amount"    />
         <result property="status"    column="status"    />
         <result property="orderTime"    column="order_time"    />
+        <result property="address"    column="address"    />
         <result property="trackingNum"    column="tracking_num"    />
         <result property="createTime"    column="create_time"    />
         <result property="createBy"    column="create_by"    />
@@ -58,10 +60,14 @@
         <result property="category"    column="category"    />
         <result property="startPrice"    column="start_price"   />
         <result property="trackingNum"    column="tracking_num"   />
+        <result property="addressId"    column="address_id"   />
+        <result property="name"    column="name"   />
+        <result property="phone"    column="tracking_num"   />
+        <result property="address"    column="address"   />
     </resultMap>
 
     <sql id="selectMicroOrderVo">
-        select id, user_id, goods_id, amount, status, order_time, tracking_num, create_time, create_by, update_time, update_by, del_flag from micro_order
+        select id, user_id, goods_id, amount, status, order_time, address, tracking_num, create_time, create_by, update_time, update_by, del_flag from micro_order
     </sql>
 
     <select id="selectMicroOrderList" parameterType="MicroOrder" resultMap="MicroOrderResult">
@@ -130,15 +136,20 @@
             mo.`amount`,
             mo.`status`,
             mo.`order_time` AS `time`,
-            mg.name AS goods_name,
+            mg.`name` AS goods_name,
             mg.`category`,
             mg.`image_link`,
             mg.`start_price`,
-            mo.`tracking_num`
+            mo.`tracking_num`,
+            md.id AS address_id,
+            md.`name`,
+            md.phone,
+            md.address
         FROM
             micro_order mo
-                LEFT JOIN micro_goods mg
-                          ON mo.`goods_id` = mg.`id`
+                LEFT JOIN micro_goods mg ON mo.`goods_id` = mg.`id`
+                LEFT JOIN micro_user_address md ON mo.address = md.id
+                AND mo.user_id = md.user_id
         WHERE mo.id = #{id}
           AND mo.`user_id` = #{userId}
     </select>
