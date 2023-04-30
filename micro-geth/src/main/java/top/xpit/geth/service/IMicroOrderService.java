@@ -3,6 +3,7 @@ package top.xpit.geth.service;
 import java.util.List;
 import top.xpit.geth.domain.MicroOrder;
 import top.xpit.geth.domain.query.AppOrderQueryParam;
+import top.xpit.geth.domain.query.AppPickUpParam;
 import top.xpit.geth.domain.vo.ContentInfoVo;
 import top.xpit.geth.domain.vo.OrderVo;
 
@@ -67,4 +68,6 @@ public interface IMicroOrderService
     List<MicroOrder> selectMicroOrderVoList(MicroOrder microOrder);
 
     ContentInfoVo selectAppOrderById(Long id);
+
+    int pickup(AppPickUpParam param);
 }

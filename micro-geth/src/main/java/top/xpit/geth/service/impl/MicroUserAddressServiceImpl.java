@@ -1,6 +1,9 @@
 package top.xpit.geth.service.impl;
 
 import java.util.List;
+import java.util.Objects;
+
+import org.springframework.transaction.annotation.Transactional;
 import top.xpit.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,9 +53,16 @@ public class MicroUserAddressServiceImpl implements IMicroUserAddressService
      * @param microUserAddress 地址管理
      * @return 结果
      */
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int insertMicroUserAddress(MicroUserAddress microUserAddress)
     {
+        if ("1".equals(microUserAddress.getIsDefault())){
+            MicroUserAddress address = microUserAddressMapper.selectByUserIdAndDefault(microUserAddress.getUserId());
+            if (Objects.nonNull(address)){
+                throw new RuntimeException("已经存在默认地址");
+            }
+        }
         microUserAddress.setCreateTime(DateUtils.getNowDate());
         return microUserAddressMapper.insertMicroUserAddress(microUserAddress);
     }

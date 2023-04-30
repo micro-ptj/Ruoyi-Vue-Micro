@@ -58,4 +58,6 @@ public interface MicroUserAddressMapper
      * @return 结果
      */
     public int deleteMicroUserAddressByIds(Long[] ids);
+
+    MicroUserAddress selectByUserIdAndDefault(Long userId);
 }

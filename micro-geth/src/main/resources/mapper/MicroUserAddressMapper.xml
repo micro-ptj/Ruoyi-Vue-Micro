@@ -37,6 +37,10 @@
         <include refid="selectMicroUserAddressVo"/>
         where id = #{id}
     </select>
+    <select id="selectByUserIdAndDefault" parameterType="Long" resultType="top.xpit.geth.domain.MicroUserAddress">
+        <include refid="selectMicroUserAddressVo"/>
+        where user_id = #{userId} and is_default = '1'
+    </select>
 
     <insert id="insertMicroUserAddress" parameterType="MicroUserAddress" useGeneratedKeys="true" keyProperty="id">
         insert into micro_user_address

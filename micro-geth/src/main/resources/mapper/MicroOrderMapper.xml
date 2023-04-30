@@ -201,6 +201,16 @@
         </trim>
         where id = #{id}
     </update>
+    <update id="pickup">
+        UPDATE micro_order
+        SET address = #{addressId},
+            `status` = '1' ,
+            update_time = NOW(),
+            update_by = #{userId}
+        WHERE
+            user_id = #{userId}
+          AND del_flag = 0
+    </update>
 
     <delete id="deleteMicroOrderById" parameterType="Long">
         delete from micro_order where id = #{id}

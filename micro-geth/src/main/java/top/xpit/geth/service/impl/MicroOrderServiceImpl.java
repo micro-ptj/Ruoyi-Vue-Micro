@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.xpit.common.utils.SecurityUtils;
 import top.xpit.geth.domain.query.AppOrderQueryParam;
+import top.xpit.geth.domain.query.AppPickUpParam;
 import top.xpit.geth.domain.vo.ContentInfoVo;
 import top.xpit.geth.domain.vo.OrderVo;
 import top.xpit.geth.mapper.MicroOrderMapper;
@@ -111,5 +112,10 @@ public class MicroOrderServiceImpl implements IMicroOrderService
     @Override
     public ContentInfoVo selectAppOrderById(Long id) {
         return microOrderMapper.selectAppOrderById(id, SecurityUtils.getAppUserId());
+    }
+
+    @Override
+    public int pickup(AppPickUpParam param) {
+        return microOrderMapper.pickup(param);
     }
 }

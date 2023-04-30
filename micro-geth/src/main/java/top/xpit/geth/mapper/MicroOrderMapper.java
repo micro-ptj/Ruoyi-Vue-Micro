@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import top.xpit.geth.domain.MicroOrder;
 import top.xpit.geth.domain.query.AppOrderQueryParam;
+import top.xpit.geth.domain.query.AppPickUpParam;
 import top.xpit.geth.domain.vo.ContentInfoVo;
 import top.xpit.geth.domain.vo.OrderVo;
 
@@ -73,4 +74,6 @@ public interface MicroOrderMapper
     List<MicroOrder> selectMicroOrderVoList(MicroOrder microOrder);
 
     ContentInfoVo selectAppOrderById(@Param("id") Long id, @Param("userId") Long userId);
+
+    int pickup(AppPickUpParam param);
 }
