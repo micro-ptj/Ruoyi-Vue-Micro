@@ -1,4 +1,21 @@
-### 安装geth
+# 平台简介
+
+## 代码地址
++ 后台 https://github.com/micro-ptj/Ruoyi-Vue-Micro.git
++ 移动端 https://github.com/micro-ptj/Micro-App.git
+
+演示地址
+
++ 管理后台 http://manager.xpit.top/login?redirect=%2Findex  账号admin 密码qwer1234
++ 移动端 http://app.xpit.top
+
+### 主要修改
+
++ 添加移动端登录 集成短信登录
++ 集成以太坊区块链平台（Go-Ethereum）
++ 移动端采用UniApp+Vue3实现
+
+## 安装geth
 
 ```bash
 yum install -y golang git
@@ -80,5 +97,5 @@ keccak256(abi.encode("15", "test"))
 该合约具有以下基本特性：
 
 构造函数中传入拍卖时间、受益人地址和商品唯一标识。
-竞拍者可以在规定时间内进行出价，如果出价高于当前最高出价，则将之前
+竞拍者可以在规定时间内进行出价，如果出价高于当前最高出价，则将之前出价置到可释放区域
 ```
