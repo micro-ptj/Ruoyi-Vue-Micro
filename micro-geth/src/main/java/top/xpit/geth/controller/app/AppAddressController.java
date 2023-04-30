@@ -38,6 +38,11 @@ public class AppAddressController extends BaseController {
         return getDataTable(list);
     }
 
+    @GetMapping("default")
+    public AjaxResult infoByDefault() {
+        return success(microUserAddressService.selectUserAddressByIsDefault(SecurityUtils.getAppUserId()));
+    }
+
 
     /**
      * 新增地址管理

@@ -103,4 +103,9 @@ public class MicroUserAddressServiceImpl implements IMicroUserAddressService
     {
         return microUserAddressMapper.deleteMicroUserAddressById(id);
     }
+
+    @Override
+    public MicroUserAddress selectUserAddressByIsDefault(Long appUserId) {
+        return microUserAddressMapper.selectByUserIdAndDefault(appUserId);
+    }
 }

@@ -58,4 +58,6 @@ public interface IMicroUserAddressService
      * @return 结果
      */
     public int deleteMicroUserAddressById(Long id);
+
+    MicroUserAddress selectUserAddressByIsDefault(Long appUserId);
 }

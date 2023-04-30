@@ -60,4 +60,5 @@ public interface MicroUserAddressMapper
     public int deleteMicroUserAddressByIds(Long[] ids);
 
     MicroUserAddress selectByUserIdAndDefault(Long userId);
+
 }
