@@ -99,7 +99,6 @@ spring:
         druid:
             # 主库数据源
             master:
-#                url: jdbc:mysql://sh-cynosdbmysql-grp-eabmykda.sql.tencentcdb.com:25049/micro?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
                 url: jdbc:mysql://${mysql-host}:${mysql-port}/${mysql-database}?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
                 username: ${mysql-username}
                 password: ${mysql-password}
