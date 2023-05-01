@@ -5,15 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.xpit.common.utils.DateUtils;
+import top.xpit.geth.domain.MicroAppUser;
 import top.xpit.geth.domain.MicroBid;
 import top.xpit.geth.domain.MicroGoods;
 import top.xpit.geth.domain.MicroOrder;
 import top.xpit.geth.domain.dto.OrderDto;
 import top.xpit.geth.domain.query.AppBidParam;
-import top.xpit.geth.mapper.MicroBidMapper;
-import top.xpit.geth.mapper.MicroGoodsMapper;
-import top.xpit.geth.mapper.MicroOrderMapper;
-import top.xpit.geth.mapper.MicroUserInfoMapper;
+import top.xpit.geth.mapper.*;
 import top.xpit.geth.service.AuctionService;
 import top.xpit.geth.service.EscrowService;
 import top.xpit.geth.service.GoodsStoreService;
@@ -40,10 +38,16 @@ public class AuctionServiceImpl implements AuctionService {
     private final EscrowService escrowService;
     private final MicroOrderMapper microOrderMapper;
     private final MicroBidMapper microBidMapper;
+    private final MicroAppUserMapper microAppUserMapper;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean bids(AppBidParam param) {
+        //先判断是否实名认证过
+        MicroAppUser appUser = microAppUserMapper.selectMicroAppUserById(param.getUserId());
+        if (appUser.getIdCardNo().equals(null)){
+            throw new RuntimeException("请先进行实名认证");
+        }
         //竞拍价不能小于之前出价 或者商品价格
         BigDecimal amount = param.getAmount();
         MicroGoods goods = microGoodsMapper.selectMicroGoodsById(param.getGoodsId());
