@@ -57,7 +57,7 @@ public class LoginController extends BaseController {
         return success();
     }
 
-    @PostMapping("register")
+    @PostMapping("/register")
     public AjaxResult register(@RequestBody AppRegisterUserParam param){
         int i = appLoginService.register(param);
         return toAjax(i);
