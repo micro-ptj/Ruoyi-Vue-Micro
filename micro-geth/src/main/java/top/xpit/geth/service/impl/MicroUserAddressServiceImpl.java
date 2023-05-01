@@ -57,10 +57,11 @@ public class MicroUserAddressServiceImpl implements IMicroUserAddressService
     @Override
     public int insertMicroUserAddress(MicroUserAddress microUserAddress)
     {
-        if (microUserAddress.getIsDefault().equals(1)){
+        if (microUserAddress.getIsDefault() == 1){
             MicroUserAddress address = microUserAddressMapper.selectByUserIdAndDefault(microUserAddress.getUserId());
             if (Objects.nonNull(address)){
-                throw new RuntimeException("已经存在默认地址");
+                address.setIsDefault(0L);
+                microUserAddressMapper.updateMicroUserAddress(address);
             }
         }
         microUserAddress.setCreateTime(DateUtils.getNowDate());
