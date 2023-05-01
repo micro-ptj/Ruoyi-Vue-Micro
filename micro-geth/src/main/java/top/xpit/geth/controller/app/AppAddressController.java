@@ -47,7 +47,7 @@ public class AppAddressController extends BaseController {
     /**
      * 新增地址管理
      */
-    @PostMapping
+    @PostMapping("insert")
     public AjaxResult add(@RequestBody MicroUserAddress microUserAddress)
     {
         microUserAddress.setUserId(SecurityUtils.getAppUserId());
@@ -57,7 +57,7 @@ public class AppAddressController extends BaseController {
     /**
      * 修改地址管理
      */
-    @PutMapping
+    @PostMapping("update")
     public AjaxResult edit(@RequestBody MicroUserAddress microUserAddress)
     {
         return toAjax(microUserAddressService.updateMicroUserAddress(microUserAddress));
