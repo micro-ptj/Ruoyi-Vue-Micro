@@ -155,6 +155,10 @@ public class MicroAppUserServiceImpl implements IMicroAppUserService
     @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean identityVerify(AppIdentityVerifyParam param) {
+        MicroAppUser appUser1 = microAppUserMapper.selectMicroAppUserById(param.getUserId());
+        if (appUser1.getPhone().equals(param.getPhone())){
+            throw new RuntimeException("实名认证手机号必须为登录账号");
+        }
         MicroAppUser appUser = new MicroAppUser();
         try {
             String verify = VerifyIdentityUtil.verify(param);
